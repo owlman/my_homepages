@@ -11,8 +11,7 @@ html {
 #content {
 	margin: auto;
 	height: 600px;
-	width: 95%;
-	
+	width: 95%;	
 }
 
 #side {
@@ -20,20 +19,22 @@ html {
 	height: 600px;
 	width: 20%;
 	background-color: white;	
-	float: left;
+	float: left;		
 }
 
 #main {
 	margin: auto;
 	height: 600px;
 	width: 79%;
-	background-color: green;
-	float: right;	
+	background-color: white;
+	float: right;
+	filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+	-moz-opacity:0.50; /*支持 FireFox 浏览器*/
+	opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
 }
 
 #footer {
 	margin: auto;
 	height: 100px;
-	width: 95%;
-	
+	width: 95%;	
 }
