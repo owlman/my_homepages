@@ -1,0 +1,39 @@
+html {
+	background-image: url("../img/bg.jpg");
+}
+
+#header {
+	margin: auto;
+	height: 100px;
+	width: 95%;	
+}
+
+#content {
+	margin: auto;
+	height: 600px;
+	width: 95%;
+	
+}
+
+#side {
+	margin: auto;
+	height: 600px;
+	width: 20%;
+	background-color: white;	
+	float: left;
+}
+
+#main {
+	margin: auto;
+	height: 600px;
+	width: 79%;
+	background-color: green;
+	float: right;	
+}
+
+#footer {
+	margin: auto;
+	height: 100px;
+	width: 95%;
+	
+}
