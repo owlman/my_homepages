@@ -1,12 +1,14 @@
 html {
+	font-family: 'Hiragino Sans GB', 'Microsoft Yahei', "WenQuanYi Micro Hei", SimSun, Tahoma, Arial, Helvetica, STHeiti;
 	background-image: url("../img/bg.jpg");	
 }
 
 #header {
 	margin: auto;
-	height: 100px;
 	width: 95%;	
 	color: white;
+	border-bottom: dashed 1px;
+	margin-bottom: 10px;
 }
 
 #content {
@@ -21,6 +23,7 @@ html {
 	width: 20%;
 	background-color: white;	
 	float: left; 
+	border-radius: 8px;
 }
 
 #aboutme {	
@@ -35,6 +38,10 @@ html {
 	width: 95%;
 }
 
+#nav a {
+	text-decoration: none;
+	color: gray;
+}
 #main {
 	margin: auto;
 	height: 600px;
@@ -44,10 +51,14 @@ html {
 	/*filter:alpha(opacity=50);  /*支持 IE 浏览器*/
 	/*-moz-opacity:0.50; /*支持 FireFox 浏览器*/
 	/*opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	border-radius: 8px;
 }
 
 #footer {
 	margin: auto;
 	height: 100px;
 	width: 95%;	
+	border-top: dashed 1px;
+	margin-top: 10px;
+	color: white
 }
