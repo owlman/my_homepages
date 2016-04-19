@@ -22,6 +22,18 @@ html {
 	float: left;		
 }
 
+#aboutme {	
+}
+
+#aboutme img {
+	width: 80%;	
+}
+
+#nav {
+	margin: auto;
+	width: 95%;
+}
+
 #main {
 	margin: auto;
 	height: 600px;
