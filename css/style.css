@@ -1,11 +1,12 @@
 html {
-	background-image: url("../img/bg.jpg");
+	background-image: url("../img/bg.jpg");	
 }
 
 #header {
 	margin: auto;
 	height: 100px;
 	width: 95%;	
+	color: white;
 }
 
 #content {
@@ -19,7 +20,7 @@ html {
 	height: 600px;
 	width: 20%;
 	background-color: white;	
-	float: left;		
+	float: left; 
 }
 
 #aboutme {	
@@ -40,9 +41,9 @@ html {
 	width: 79%;
 	background-color: white;
 	float: right;
-	filter:alpha(opacity=50);  /*支持 IE 浏览器*/
-	-moz-opacity:0.50; /*支持 FireFox 浏览器*/
-	opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+	/*filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+	/*-moz-opacity:0.50; /*支持 FireFox 浏览器*/
+	/*opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
 }
 
 #footer {
