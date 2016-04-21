@@ -37,6 +37,26 @@ html {
 	border-radius: 8px;
 }
 
+#myinfo {
+	text-align: center;
+	width: 80%;	
+	background-color: #eee;
+	border-radius: 8px;
+	margin: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#myinfo h4 {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+#myinfo p {
+	margin: 0;
+	font-size: 12px;
+}
+
 #nav {
 	margin: auto;
 	width: 95%;
@@ -59,9 +79,6 @@ html {
 	width: 75%;
 	background-color: white;
 	float: right;
-	/*filter:alpha(opacity=50);  /*支持 IE 浏览器*/
-	/*-moz-opacity:0.50; /*支持 FireFox 浏览器*/
-	/*opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
 	border-radius: 8px;
 }
 
@@ -74,6 +91,6 @@ html {
 }
 
 #copyright {
-	font-size: 14px;
+	font-size: 14px
 	margin: 0px;
 }
