@@ -3,6 +3,11 @@ html {
 	background-image: url("../img/bg.jpg");	
 }
 
+a {
+	text-decoration: none;
+	color: gray;
+}
+
 .clear {
 	clear: both;
 }
@@ -15,6 +20,10 @@ html {
 	margin-bottom: 10px;
 }
 
+#header h1 {
+	font-size: 40px;
+}
+
 #content {
 	margin: auto;
 	width: 95%;	
@@ -22,14 +31,15 @@ html {
 
 #side {
 	margin: auto;
-	height: 600px;
 	width: 20%;
+	height: 610px;
 	background-color: white;	
 	float: left; 
 	border-radius: 8px;
 }
 
-#aboutme {	
+#aboutme {
+
 }
 
 #aboutme img {
@@ -62,11 +72,6 @@ html {
 	width: 95%;
 }
 
-#nav a {
-	text-decoration: none;
-	color: gray;
-}
-
 #nav h3 {
 	padding-bottom: 5px;
 	border-bottom: dashed 1px;
@@ -75,11 +80,48 @@ html {
 #main {
 	margin: auto;
 	padding: 20px;
-	height: 560px;
 	width: 75%;
 	background-color: white;
 	float: right;
 	border-radius: 8px;
+}
+
+#main h2 {
+	padding-bottom: 5px;
+	border-bottom: dashed 1px;
+}
+
+#book {
+	padding: 0px;
+	padding-left: 20px;
+}
+
+#book_cover {
+	float: left;
+	width: 16%;	
+}
+
+#book_cover img {
+	margin: 0;
+	width: 95%;
+	text-align: center;
+}
+#book_title ul {
+	margin: 0;
+	margin-left: 13%;
+	font-size: 14px;
+	color: gray;
+}
+
+#book_title li {
+	display: inline;
+	margin-right: 10px;
+}
+
+#book_message {
+	margin-left: 17%;
+	padding-left: 10px;
+	border-left: solid 2px #ccc;
 }
 
 #footer {
@@ -91,6 +133,7 @@ html {
 }
 
 #copyright {
-	font-size: 14px
+	font-size: 12px;
 	margin: 0px;
+	padding: 0px;
 }
