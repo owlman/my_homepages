@@ -21,7 +21,7 @@ a {
 }
 
 #header h1 {
-	font-size: 40px;
+	font-size: 2.5em;
 }
 
 #content {
@@ -31,8 +31,8 @@ a {
 
 #side {
 	margin: auto;
+	padding-bottom: 2em;
 	width: 20%;
-	height: 610px;
 	background-color: white;	
 	float: left; 
 	border-radius: 8px;
@@ -48,19 +48,19 @@ a {
 	width: 80%;	
 	background-color: #eee;
 	border-radius: 8px;
-	margin: 0;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	margin: 0em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 #myinfo h4 {
-	margin: 0;
+	margin: auto;
 	margin-bottom: 10px;
 }
 
 #myinfo p {
-	margin: 0;
-	font-size: 12px;
+	margin: auto;
+	font-size: 0.7em;
 }
 
 #nav {
@@ -87,9 +87,30 @@ a {
 	border-bottom: dashed 1px;
 }
 
+#owlman_info {
+	margin: auto;
+	width: 100%;	
+}
+
+#owlman_info p {
+	margin: auto;
+	padding-left: 1.5em;
+	padding-right: 1.5em; 
+}
+
+#owlman_activity {
+	margin: auto;
+	width: 100%;
+}
+
+#owlman_book {
+	margin: auto;
+	width: 100%;
+}
+
 #book {
-	padding: 0px;
-	padding-left: 20px;
+	width: 100%;
+	padding-left: 1.5em;
 }
 
 #book_cover {
@@ -98,14 +119,20 @@ a {
 }
 
 #book_cover img {
-	margin: 0;
+	margin: auto;
 	width: 95%;
 	text-align: center;
 }
+
+#book_title {
+	margin: auto;
+	width: 80%;
+}
+
 #book_title ul {
-	margin: 0;
-	margin-left: 13%;
-	font-size: 14px;
+	margin: auto;
+	margin-left: 3%;
+	font-size: 0.8em;
 	color: gray;
 }
 
@@ -115,21 +142,26 @@ a {
 }
 
 #book_message {
+	width: 80%;
 	margin-left: 17%;
-	padding-left: 10px;
-	border-left: solid 2px #ccc;
+	border-left: solid 0.2em #ccc;
+}
+
+#book_message p {
+	padding-left: 0.5em;
+	padding-right: 1.5em;
 }
 
 #footer {
 	margin: auto;
 	width: 95%;	
 	border-top: dashed 1px;
-	margin-top: 10px;
+	margin-top: 0.5em;
 	color: white
 }
 
 #copyright {
-	font-size: 12px;
-	margin: 0px;
-	padding: 0px;
+	font-size: 0.8em;
+	margin: 0em;
+	padding: 0em;
 }
