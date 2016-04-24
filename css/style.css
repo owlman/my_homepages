@@ -17,11 +17,12 @@ a {
 	width: 95%;	
 	color: white;
 	border-bottom: dashed 1px;
-	margin-bottom: 10px;
+	margin-bottom: 0.5em;
 }
 
 #header h1 {
-	font-size: 2.5em;
+	font-size: 2em;
+	vertical-align: middle;
 }
 
 #content {
@@ -115,23 +116,22 @@ a {
 
 #book_cover {
 	float: left;
-	width: 16%;	
+	width: 10em;	
 }
 
 #book_cover img {
 	margin: auto;
-	width: 95%;
+	width: 10em;
 	text-align: center;
 }
 
 #book_title {
-	margin: auto;
-	width: 80%;
+	margin: auto;	
 }
 
 #book_title ul {
 	margin: auto;
-	margin-left: 3%;
+	margin-left: 10.5em;
 	font-size: 0.8em;
 	color: gray;
 }
@@ -142,8 +142,8 @@ a {
 }
 
 #book_message {
-	width: 80%;
-	margin-left: 17%;
+	margin-left: 11em;
+	margin-right: 1.5em;
 	border-left: solid 0.2em #ccc;
 }
 
