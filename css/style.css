@@ -12,7 +12,7 @@ a {
 	clear: both;
 }
 
-#header {
+header {
 	margin: auto;
 	width: 95%;	
 	color: white;
@@ -20,17 +20,12 @@ a {
 	margin-bottom: 0.5em;
 }
 
-#header h1 {
+header h1 {
 	font-size: 2em;
 	vertical-align: middle;
 }
 
-#content {
-	margin: auto;
-	width: 95%;	
-}
-
-#side {
+aside {
 	margin: auto;
 	padding-bottom: 2em;
 	width: 20%;
@@ -39,12 +34,12 @@ a {
 	border-radius: 8px;
 }
 
-#aboutme img {
+aside .aboutme img {
 	width: 80%;	
 	border-radius: 8px;
 }
 
-#myinfo {
+aside .myinfo {
 	text-align: center;
 	width: 80%;	
 	background-color: #eee;
@@ -54,27 +49,32 @@ a {
 	padding-bottom: 0.5em;
 }
 
-#myinfo h4 {
+aside .myinfo h4 {
 	margin: auto;
 	margin-bottom: 10px;
 }
 
-#myinfo p {
+aside .myinfo p {
 	margin: auto;
 	font-size: 0.7em;
 }
 
-#nav {
+nav {
 	margin: auto;
 	width: 95%;
 }
 
-#nav h3 {
+nav h3 {
 	padding-bottom: 5px;
 	border-bottom: dashed 1px;
 }
 
-#main {
+section {
+	margin: auto;
+	width: 95%;	
+}
+
+section .main {
 	margin: auto;
 	padding: 20px;
 	width: 75%;
@@ -83,76 +83,76 @@ a {
 	border-radius: 8px;
 }
 
-#main h2 {
+section .main h2 {
 	padding-bottom: 5px;
 	border-bottom: dashed 1px;
 }
 
-#owlman_info {
+section .main .owlman_info {
 	margin: auto;
 	width: 100%;	
 }
 
-#owlman_info p {
+section .main .owlman_info p {
 	margin: auto;
 	padding-left: 1.5em;
 	padding-right: 1.5em; 
 }
 
-#owlman_activity {
+section .main .last_activity {
 	margin: auto;
 	width: 100%;
 }
 
-#owlman_book {
+section .main .last_book {
 	margin: auto;
 	width: 100%;
 }
 
-#book {
+section .main .last_book .book {
 	width: 100%;
 	padding-left: 1.5em;
 }
 
-#book_cover {
+section .main .last_book .cover {
 	float: left;
 	width: 10em;	
 }
 
-#book_cover img {
+section .main .last_book .cover img {
 	margin: auto;
 	width: 10em;
 	text-align: center;
 }
 
-#book_title {
+section .main .last_book .title {
 	margin: auto;	
 }
 
-#book_title ul {
+section .main .last_book .title ul {
 	margin: auto;
 	margin-left: 10.5em;
 	font-size: 0.8em;
 	color: gray;
 }
 
-#book_title li {
+section .main .last_book .title li {
 	display: inline;
 	margin-right: 10px;
 }
 
-#book_message {
+section .main .last_book .message {
 	margin-left: 11em;
 	margin-right: 1.5em;
 	border-left: solid 0.2em #ccc;
 }
 
-#book_message p {
+section .main .last_book .message p {
 	padding-left: 0.5em;
 	padding-right: 1.5em;
 }
 
-#footer {
+footer {
 	margin: auto;
 	width: 95%;	
 	border-top: dashed 1px;
@@ -160,7 +160,7 @@ a {
 	color: white
 }
 
-#copyright {
+footer .copyright {
 	font-size: 0.8em;
 	margin: 0em;
 	padding: 0em;
