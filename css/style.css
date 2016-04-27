@@ -1,5 +1,7 @@
-html {
-	font-family: 'Hiragino Sans GB', 'Microsoft Yahei', "WenQuanYi Micro Hei", SimSun, Tahoma, Arial, Helvetica, STHeiti;
+@charset "utf-8";
+
+body {
+	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 	background-image: url("../img/bg.jpg");	
 }
 
