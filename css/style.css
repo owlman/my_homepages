@@ -1,8 +1,10 @@
 @charset "utf-8";
 
 body {
-	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+	margin: 0;
+	font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 	background-image: url("../img/bg.jpg");	
+	font-size: 16px;
 }
 
 a {
@@ -19,17 +21,17 @@ header {
 	width: 95%;	
 	color: white;
 	border-bottom: dashed 1px;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5rem;
 }
 
 header h1 {
-	font-size: 2em;
+	font-size: 2rem;
 	vertical-align: middle;
 }
 
 aside {
 	margin: auto;
-	padding-bottom: 2em;
+	padding-bottom: 2rem;
 	width: 20%;
 	background-color: white;	
 	float: left; 
@@ -46,9 +48,9 @@ aside .myinfo {
 	width: 80%;	
 	background-color: #eee;
 	border-radius: 8px;
-	margin: 0em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	margin: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 aside .myinfo h4 {
@@ -58,7 +60,7 @@ aside .myinfo h4 {
 
 aside .myinfo p {
 	margin: auto;
-	font-size: 0.7em;
+	font-size: 0.7rem;
 }
 
 nav {
@@ -97,8 +99,8 @@ section .main .owlman_info {
 
 section .main .owlman_info p {
 	margin: auto;
-	padding-left: 1.5em;
-	padding-right: 1.5em; 
+	padding-left: 1.5rem;
+	padding-right: 1.5rem; 
 }
 
 section .main .last_activity {
@@ -113,17 +115,17 @@ section .main .last_book {
 
 section .main .last_book .book {
 	width: 100%;
-	padding-left: 1.5em;
+	padding-left: 1.5rem;
 }
 
 section .main .last_book .cover {
 	float: left;
-	width: 10em;	
+	width: 10rem;	
 }
 
 section .main .last_book .cover img {
 	margin: auto;
-	width: 10em;
+	width: 10rem;
 	text-align: center;
 }
 
@@ -133,8 +135,8 @@ section .main .last_book .title {
 
 section .main .last_book .title ul {
 	margin: auto;
-	margin-left: 10.5em;
-	font-size: 0.8em;
+	margin-left: 10.5rem;
+	font-size: 0.8rem;
 	color: gray;
 }
 
@@ -144,26 +146,26 @@ section .main .last_book .title li {
 }
 
 section .main .last_book .message {
-	margin-left: 11em;
-	margin-right: 1.5em;
-	border-left: solid 0.2em #ccc;
+	margin-left: 11rem;
+	margin-right: 1.5rem;
+	border-left: solid 0.2rem #ccc;
 }
 
 section .main .last_book .message p {
-	padding-left: 0.5em;
-	padding-right: 1.5em;
+	padding-left: 0.5rem;
+	padding-right: 1.5rem;
 }
 
 footer {
 	margin: auto;
 	width: 95%;	
 	border-top: dashed 1px;
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
 	color: white
 }
 
 footer .copyright {
-	font-size: 0.8em;
-	margin: 0em;
-	padding: 0em;
+	font-size: 0.8rem;
+	margin: 0;
+	padding: 0;
 }
