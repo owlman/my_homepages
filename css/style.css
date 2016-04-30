@@ -156,8 +156,25 @@ section .main .last_book .book .message .title ul {
 
 section .main .last_book .book .message .title li {
 	display: inline;
-	margin-right: 1.5rem;
+	margin-right: 1rem;
 }
+
+section .main .last_book .book .message .title .shop {
+	display: inline-block;
+}
+
+section .main .last_book .book .message .title .shop li {
+	display: inline;
+	margin-right: 0.3rem;
+}
+
+section .main .last_book .book .message .title .shop a {
+	font-weight: bold;
+	background-color: #ccc;
+	border-radius: 8px;
+	margin: 0;
+	padding: 0.3rem 0.6rem;
+} 
 
 section .main .last_book .book .message .content {
 	margin: 0;
