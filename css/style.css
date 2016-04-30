@@ -17,7 +17,7 @@ a {
 }
 
 header {
-	margin: auto;
+	margin: 0 auto;
 	width: 95%;	
 	color: white;
 	border-bottom: dashed 1px;
@@ -25,7 +25,7 @@ header {
 }
 
 header h1 {
-	font-size: 2rem;
+	font-size: 2.5rem;
 	vertical-align: middle;
 }
 
@@ -39,13 +39,13 @@ aside {
 }
 
 aside .aboutme img {
-	width: 80%;	
+	width: 85%;	
 	border-radius: 8px;
 }
 
 aside .myinfo {
+	width: 85%;	
 	text-align: center;
-	width: 80%;	
 	background-color: #eee;
 	border-radius: 8px;
 	margin: 0;
@@ -114,44 +114,61 @@ section .main .last_book {
 }
 
 section .main .last_book .book {
+	margin: 0;
 	width: 100%;
 	padding-left: 1.5rem;
 }
 
-section .main .last_book .cover {
+section .main .last_book .book .cover {
 	float: left;
-	width: 10rem;	
+	width: 15%;	
 }
 
-section .main .last_book .cover img {
+section .main .last_book .book .cover img {
 	margin: auto;
-	width: 10rem;
+	width: 100%;
 	text-align: center;
 }
 
-section .main .last_book .title {
-	margin: auto;	
+section .main .last_book .book .message 
+{
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 82%;	
 }
 
-section .main .last_book .title ul {
-	margin: auto;
-	margin-left: 8.5rem;
+section .main .last_book .book .message .title {
+	margin: 0;
+	padding: 0;
+	width: auto;		
+}
+
+section .main .last_book .book .message .title h3 {
+	margin-top: 0;	
+}
+
+section .main .last_book .book .message .title ul {
+	margin: 0;
+	padding: 0;
+	margin-left: 0.5rem;
 	font-size: 0.8rem;
 	color: gray;
 }
 
-section .main .last_book .title li {
+section .main .last_book .book .message .title li {
 	display: inline;
-	margin-right: 10px;
+	margin-right: 1.5rem;
 }
 
-section .main .last_book .message {
-	margin-left: 11rem;
-	margin-right: 1.5rem;
+section .main .last_book .book .message .content {
+	margin: 0;
+	margin-left: 0.5rem;
+	width: auto;
 	border-left: solid 0.2rem #ccc;
 }
 
-section .main .last_book .message p {
+section .main .last_book .book .message .content p {
 	padding-left: 0.5rem;
 	padding-right: 1.5rem;
 }
@@ -161,7 +178,7 @@ footer {
 	width: 95%;	
 	border-top: dashed 1px;
 	margin-top: 0.5rem;
-	color: white
+	color: white;
 }
 
 footer .copyright {
