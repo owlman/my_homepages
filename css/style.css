@@ -180,6 +180,10 @@ section .main .last_book .book .message .shop a {
 	padding: 0.3rem 0.6rem;
 } 
 
+section .main .last_book .book .message .shop a:hover {
+	background-color: black;
+	color: white;
+}
 section .main .last_book .book .message .content {
 	margin: 0;
 	margin-left: 0.5rem;
