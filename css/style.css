@@ -159,16 +159,20 @@ section .main .last_book .book .message .title li {
 	margin-right: 1rem;
 }
 
-section .main .last_book .book .message .title .shop {
+section .main .last_book .book .message .shop {
 	display: inline-block;
 }
 
-section .main .last_book .book .message .title .shop li {
+section .main .last_book .book .message .shop ul {
+	display: inline-block;	
+}
+
+section .main .last_book .book .message .shop li {
 	display: inline;
 	margin-right: 0.3rem;
 }
 
-section .main .last_book .book .message .title .shop a {
+section .main .last_book .book .message .shop a {
 	font-weight: bold;
 	background-color: #ccc;
 	border-radius: 8px;
