@@ -222,7 +222,7 @@ footer .copyright {
 /*以下为响应式部分*/
 @media screen and (max-width: 768px) {
 	header h1 {
-		margin: 1.5rem 0;
+		margin: 1.5rem 1rem;
 		font-size: 2rem;
 		vertical-align: middle;
 	}
@@ -239,7 +239,7 @@ footer .copyright {
 	section .main {
 		display: block;
 		margin: 0 auto;
-		width: 94%;
+		width: 95%;
 		float: none;
 	}
 
