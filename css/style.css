@@ -106,8 +106,8 @@ section .main .owlman_info {
 
 section .main .owlman_info p {
 	margin: auto;
-	padding-left: 1.5rem;
-	padding-right: 1.5rem; 
+	padding: 0 1.5rem;
+	text-align: justify; 
 }
 
 section .main .last_activity {
@@ -167,6 +167,7 @@ section .main .last_book .book .message .title li {
 }
 
 section .main .last_book .book .message .shop {
+	margin: 0.5rem 0;
 	display: inline-block;
 }
 
@@ -201,6 +202,7 @@ section .main .last_book .book .message .content {
 section .main .last_book .book .message .content p {
 	padding-left: 0.5rem;
 	padding-right: 1.5rem;
+	text-align: justify;
 }
 
 footer {
@@ -215,4 +217,79 @@ footer .copyright {
 	font-size: 0.8rem;
 	margin: 0;
 	padding: 0;
+}
+
+/*以下为响应式部分*/
+@media screen and (max-width: 768px) {
+	header h1 {
+		margin: 1rem 0;
+		font-size: 1.5rem;
+		vertical-align: middle;
+	}
+
+	aside {
+		display: none;
+		width: 0;
+	}
+
+	/*section {
+		border: solid 1px red;
+	}*/
+
+	section .main {
+		display: block;
+		margin: 0 auto;
+		width: 92%;
+		float: none;
+	}
+
+	section .main .last_activity ul {
+		margin-right: 2.5 rem;
+	}
+
+	section .main .last_book .book .cover {
+		display: block;
+		margin: auto;
+		float: none;
+	}
+
+	section .main .last_book .book .cover img {
+		width: 70%;
+		height: auto;
+	}
+
+	section .main .last_book .book .message 
+	{
+		margin: 1rem auto;
+	}
+
+	section .main .last_book .book .message .title ul {
+		margin: 0.5rem;
+		list-style: none;
+	}
+
+	section .main .last_book .book .message .title li {
+		display: list-item;
+	}
+
+	section .main .last_book .book .message .shop ul {
+		display: inline-block;	
+	}
+
+	section .main .last_book .book .message .shop li {
+		display: inline;
+		margin-right: 0.3rem;
+	} 
+
+	section .main .last_book .book .message .content {
+		margin-right: 4rem;
+		width: auto;
+		border-left: none;
+	}
+
+	section .main .last_book .book .message .content p {
+		padding: 0;
+	}
+
+
 }
