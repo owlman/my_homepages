@@ -52,13 +52,12 @@ aside .aboutme img {
 
 aside .myinfo {
 	display: block;	
-	margin:0 auto;
+	margin: 0 auto;
+	padding: 0.5rem 0;
 	width: 85%;	
 	text-align: center;
 	background-color: #eee;
 	border-radius: 8px;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
 }
 
 aside .myinfo h4 {
@@ -88,7 +87,7 @@ section {
 
 section .main {
 	margin: auto;
-	padding: 1rem;
+	padding: 1.5%;
 	width: 80%;
 	background-color: white;
 	float: right;
