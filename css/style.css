@@ -222,8 +222,8 @@ footer .copyright {
 /*以下为响应式部分*/
 @media screen and (max-width: 768px) {
 	header h1 {
-		margin: 1rem 0;
-		font-size: 1.5rem;
+		margin: 1。5rem 0;
+		font-size: 2rem;
 		vertical-align: middle;
 	}
 
@@ -239,12 +239,12 @@ footer .copyright {
 	section .main {
 		display: block;
 		margin: 0 auto;
-		width: 92%;
+		width: 94%;
 		float: none;
 	}
 
 	section .main .last_activity ul {
-		margin-right: 2.5 rem;
+		margin-right: 2.5rem;
 	}
 
 	section .main .last_book .book .cover {
