@@ -17,15 +17,15 @@ a {
 }
 
 header {
-	margin: 0;
-	width: 98%;	
+	margin: auto;
+	width: 95%;	
 	color: white;
 	border-bottom: dashed 1px;
 	margin-bottom: 0.5rem;
 }
 
 header h1 {
-	margin: 1rem;
+	margin: 1rem 0;
 	font-size: 2.5rem;
 	vertical-align: middle;
 }
@@ -82,7 +82,7 @@ nav h3 {
 
 section {
 	margin: auto;
-	width: 98%;	
+	width: 95%;	
 }
 
 section .main {
