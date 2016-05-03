@@ -17,38 +17,46 @@ a {
 }
 
 header {
-	margin: 0 auto;
-	width: 95%;	
+	margin: 0;
+	width: 98%;	
 	color: white;
 	border-bottom: dashed 1px;
 	margin-bottom: 0.5rem;
 }
 
 header h1 {
+	margin: 1rem;
 	font-size: 2.5rem;
 	vertical-align: middle;
 }
 
 aside {
 	margin: auto;
-	padding-bottom: 2rem;
-	width: 20%;
+	width: 16%;
 	background-color: white;	
 	float: left; 
 	border-radius: 8px;
 }
 
+aside .aboutme {
+   margin: 0;
+   padding: 0;
+}
+
 aside .aboutme img {
+	display: block;	
+	margin: 1rem auto;
 	width: 85%;	
 	border-radius: 8px;
 }
 
 aside .myinfo {
+	display: block;	
+	margin:0 auto;
 	width: 85%;	
 	text-align: center;
 	background-color: #eee;
 	border-radius: 8px;
-	margin: 0;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
@@ -75,13 +83,13 @@ nav h3 {
 
 section {
 	margin: auto;
-	width: 95%;	
+	width: 98%;	
 }
 
 section .main {
 	margin: auto;
-	padding: 20px;
-	width: 75%;
+	padding: 1rem;
+	width: 80%;
 	background-color: white;
 	float: right;
 	border-radius: 8px;
