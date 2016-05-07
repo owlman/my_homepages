@@ -133,7 +133,7 @@ section .main .last_book .book .cover {
 
 section .main .last_book .book .cover img {
 	margin: auto;
-	height: 12rem;
+	height: 16rem;
 	text-align: center;
 }
 
@@ -141,7 +141,7 @@ section .main .last_book .book .message
 {
 	margin: 0;
 	padding: 0;
-	margin-left: 10rem;
+	margin-left: 13.5rem;
 }
 
 section .main .last_book .book .message .title {
