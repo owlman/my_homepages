@@ -30,6 +30,10 @@ header h1 {
 	vertical-align: middle;
 }
 
+header .phone_nav {
+	display: none;
+}
+
 aside {
 	margin: auto;
 	width: 16%;
@@ -224,9 +228,40 @@ footer .copyright {
 @media screen and (max-width: 768px) {
 	
 	header h1 {
-		margin: 1.5rem 1rem;
+		margin: 1.5rem auto;
 		font-size: 1.8rem;
+		text-align: center;
 		vertical-align: middle;
+	}
+
+	header .phone_nav {
+		display: table;
+		width: 100%;
+	}
+
+	header .phone_nav ul {
+		display: table-row;
+	}
+
+	header .phone_nav ul li {
+		display: table-cell;
+		text-align: center;
+	}
+
+	/*header .phone_nav li:first-child {
+		border-right: dashed 1px;
+	}*/
+
+	header .phone_nav a {
+		padding: 0.5rem 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		color: white;
+	}
+
+	header .phone_nav a:hover {
+		background-color: black;
 	}
 
 	aside {
