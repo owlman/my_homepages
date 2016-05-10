@@ -155,7 +155,8 @@ section .main .last_book .book .message .title {
 }
 
 section .main .last_book .book .message .title h3 {
-	margin-top: 0;	
+	margin-top: 0;
+	margin-bottom: 0.4rem; 	
 }
 
 section .main .last_book .book .message .title ul {
