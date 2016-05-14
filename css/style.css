@@ -28,7 +28,7 @@ header h1 {
 	margin: 1rem 0;
 	font-size: 2.5rem;
 	vertical-align: middle;
-	text-shadow: 0 4px 0 gray;
+	text-shadow: 0 2px 0 gray;
 }
 
 header .phone_nav {
@@ -75,6 +75,18 @@ aside .myinfo p {
 	font-size: 0.7rem;
 }
 
+aside .myinfo ul {
+	margin: 0;
+	padding: 0;
+}
+
+aside .myinfo ul li {
+	display: inline-block;
+}
+
+aside .myinfo img {
+	width: 1.5rem;
+}
 nav {
 	margin: auto;
 	width: 95%;
@@ -138,7 +150,7 @@ section .main .last_book .book .cover {
 
 section .main .last_book .book .cover img {
 	margin: auto;
-	height: 12rem;
+	height: 14rem;
 	text-align: center;
 }
 
@@ -146,7 +158,7 @@ section .main .last_book .book .message
 {
 	margin: 0;
 	padding: 0;
-	margin-left: 10rem;
+	margin-left: 12rem;
 }
 
 section .main .last_book .book .message .title {
