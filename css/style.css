@@ -84,6 +84,10 @@ aside .myinfo ul li {
 	display: inline-block;
 }
 
+aside .myinfo a {
+	display: block;
+}
+
 aside .myinfo img {
 	width: 1.5rem;
 }
