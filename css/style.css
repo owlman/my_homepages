@@ -44,8 +44,8 @@ aside {
 }
 
 aside .aboutme {
-   margin: 0;
-   padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 aside .aboutme img {
@@ -72,6 +72,8 @@ aside .myinfo h4 {
 
 aside .myinfo p {
 	margin: auto;
+	padding: 0 0.5rem;
+	text-align: left;
 	font-size: 0.7rem;
 }
 
@@ -91,6 +93,7 @@ aside .myinfo a {
 aside .myinfo img {
 	width: 1.5rem;
 }
+
 nav {
 	margin: auto;
 	width: 95%;
@@ -284,15 +287,78 @@ footer .copyright {
 	}
 
 	aside {
+		display: block;
+		margin: 0.5rem auto;
+		padding: 0 0.5rem;	
+		width: 95%;
+		float: none;
+	}
+
+	aside .aboutme {
+		margin: 0;
+		padding: 0;	
+		position: relative;	
+	}
+
+	aside .aboutme img {
+		display: block;
+		margin: 2% 1%;
+		width: 50%;	
+		border-radius: 8px;
+		float: left;
+	}
+
+	aside .myinfo {
+		display:block;
+		margin: 1% 0;
+		width: 46%;	
+		text-align: center;
+		background-color: white;
+		float: left;				
+	}
+
+	aside .myinfo h4 {
+		margin: 0.5rem ;		
+	}
+
+	aside .myinfo p {
+		margin: auto;
+		text-align: left;
+		font-size: 0.8rem;
+	}
+
+	aside .myinfo ul {
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		bottom: 0.5rem;
+	}
+
+	aside .myinfo ul li {
+		display: inline-block;
+		width: 20%;
+	}
+
+	aside .myinfo a {
+		display: block;
+	}
+
+	aside .myinfo img {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	aside nav {
 		display: none;
-		width: 0;
 	}
 
 	section .main {
 		display: block;
-		margin: 0 auto;
+		margin: 0.5rem auto;
 		width: 95%;
 		float: none;
+		clear: both;
 	}
 
 	section .main .last_activity ul {
