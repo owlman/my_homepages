@@ -165,7 +165,7 @@ section .main .last_book .book .message
 {
 	margin: 0;
 	padding: 0;
-	margin-left: 12rem;
+	margin-left: 11.5rem;
 }
 
 section .main .last_book .book .message .title {
@@ -247,13 +247,13 @@ footer .copyright {
 
 /*以下为响应式部分*/
 @media screen and (min-width: 768px) {
-
-	.main .last_book .book .message .content p {
+	
+	section .main .last_book .book .message .content p {
 		overflow: hidden;
-		text-overflow:ellipsis;
+		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 6;
-		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 5;
+		-webkit-box-orient: vertical;		
 	}	
 }
 
