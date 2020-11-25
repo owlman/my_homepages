@@ -99,9 +99,10 @@ nav {
 	width: 95%;
 }
 
-nav h3 {
-	padding-bottom: 5px;
-	border-bottom: dashed 1px;
+nav h4 {
+	padding-left: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: dashed 0.1rem;
 }
 
 section {
