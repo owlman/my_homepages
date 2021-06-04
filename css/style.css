@@ -194,7 +194,7 @@ section .main .last_book .book .message .title li {
 }
 
 section .main .last_book .book .message .shop {
-	margin: 0.5rem 0;
+	margin: 0.2rem 0;
 	display: inline-block;
 }
 
@@ -419,6 +419,5 @@ footer .copyright {
 	section .main .last_book .book .message .content p {
 		padding: 0;
 	}
-
 
 }
