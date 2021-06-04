@@ -190,7 +190,7 @@ section .main .last_book .book .message .title ul {
 
 section .main .last_book .book .message .title li {
 	display: inline;
-	margin-right: 1rem;
+	margin-right: 0.2rem;
 }
 
 section .main .last_book .book .message .shop {
