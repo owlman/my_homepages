@@ -40,58 +40,53 @@ aside {
 	width: 16%;
 	background-color: white;	
 	float: left; 
-	border-radius: 8px;
+	border-radius: 0.5rem;
 }
 
 aside .aboutme {
 	margin: 0;
-	padding: 0;
+	padding: 0.2rem;
+	border-radius: 0.5rem;
+	background-color: #eee;
 }
 
 aside .aboutme img {
 	display: block;	
-	margin: 1rem auto;
+	margin: 0.2rem auto;
 	width: 85%;	
-	border-radius: 8px;
+	border-radius: 5rem;
+}
+
+aside .aboutme ul {
+    text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+aside .aboutme ul li {
+	display: inline-block;
+}
+
+aside .aboutme ul a {
+	display: block;
+    margin: 0 0.2rem;
+}
+
+aside .aboutme ul img {
+	width: 1.5rem;
 }
 
 aside .myinfo {
 	display: block;	
 	margin: 0 auto;
-	padding: 0.5rem 0;
+	padding: 0.5rem 0.5rem;
 	width: 85%;	
-	text-align: center;
-	background-color: #eee;
-	border-radius: 8px;
+	text-align: left;
 }
 
 aside .myinfo h4 {
 	margin: auto;
-	margin-bottom: 10px;
-}
-
-aside .myinfo p {
-	margin: auto;
-	padding: 0 0.5rem;
-	text-align: center;
-	font-size: 0.7rem;
-}
-
-aside .myinfo ul {
-	margin: 0;
-	padding: 0;
-}
-
-aside .myinfo ul li {
-	display: inline-block;
-}
-
-aside .myinfo a {
-	display: block;
-}
-
-aside .myinfo img {
-	width: 1.5rem;
+	margin-bottom: 0.25rem;
 }
 
 nav {
@@ -116,7 +111,7 @@ section .main {
 	width: 80%;
 	background-color: white;
 	float: right;
-	border-radius: 8px;
+	border-radius: 0.5rem;
 }
 
 section .main h2 {
@@ -309,55 +304,49 @@ footer .copyright {
 		margin: 0;
 		padding: 0;	
 		position: relative;	
+        text-align: center;
 	}
 
 	aside .aboutme img {
 		display: block;
 		margin: 2% 1%;
-		width: 50%;	
-		border-radius: 8px;
+		width: 95%;	
+		border-radius: 1rem;
 		float: left;
 	}
 
-	aside .myinfo {
-		display:block;
-		margin: 1% 0;
-		width: 46%;	
-		text-align: center;
-		background-color: white;
-		float: left;				
-	}
-
-	aside .myinfo h4 {
-		margin: 0.5rem ;		
-	}
-
-	aside .myinfo p {
-		margin: auto;
-		text-align: left;
-		font-size: 1rem;
-	}
-
-	aside .myinfo ul {
-		margin: 0;
+	aside .aboutme ul {
+		margin: 1% 2%;
 		padding: 0;
-		position: absolute;
-		bottom: 0.5rem;
+        display: block;
+		width: 95%;	
 	}
 
-	aside .myinfo ul li {
+	aside .aboutme ul li {
 		display: inline-block;
-		width: 20%;
+		width: 25%;
 	}
 
-	aside .myinfo a {
+	aside .aboutme ul a {
 		display: block;
 	}
 
-	aside .myinfo img {
-		margin: 0;
+	aside .aboutme ul img {
+		margin: 0 0.2rem;
 		padding: 0;
-		width: 100%;
+		width: 2rem;
+	}
+
+	aside .myinfo {
+		display: block;
+		margin: 1% 0;
+		width: 95%;	
+		float: right;				
+	}
+
+	aside .myinfo h4 {
+        text-align: left;
+		margin: 0.5rem ;		
 	}
 
 	aside nav {
