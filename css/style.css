@@ -311,7 +311,7 @@ footer .copyright {
 		display: block;
 		margin: 2% 1%;
 		width: 95%;	
-		border-radius: 1rem;
+		border-radius: 5rem;
 		float: left;
 	}
 
@@ -346,6 +346,7 @@ footer .copyright {
 
 	aside .myinfo h4 {
         text-align: left;
+        font-size: 1.5rem;
 		margin: 0.5rem ;		
 	}
 
