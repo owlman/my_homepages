@@ -298,6 +298,11 @@ footer .copyright {
 
 @media screen and (max-width: 768px) {
 	
+    header {
+        margin: 1rem;
+        padding: 0;
+    }
+
 	header h1 {
 		margin: 0.2rem auto;
 		font-size: 1.8rem;
