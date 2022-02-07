@@ -32,7 +32,7 @@ header h1 {
 
 header h1 img {
     display: inline ;
-	width: 4rem;
+	width: 4.5rem;
 	vertical-align: middle;
 }
 
@@ -52,7 +52,7 @@ aside .aboutme {
 	margin: 0;
 	padding: 0.2rem;
 	border-radius: 0.5rem;
-	background-color: #eee;
+	background-color: white;
 }
 
 aside .aboutme img {
@@ -60,6 +60,12 @@ aside .aboutme img {
 	margin: 0.2rem auto;
 	width: 85%;	
 	border-radius: 5rem;
+}
+
+aside .aboutme h3 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 aside .aboutme ul {
@@ -359,12 +365,14 @@ footer .copyright {
 	aside .aboutme img {
 		display: block;
 		margin: 5%;
-		height: 40%;;
-		border-radius: 5rem;
 		float: left;
 	}
 
-	aside .aboutme ul {
+	aside .aboutme h3 {
+        display: none;
+    }
+    
+    aside .aboutme ul {
 		margin: 1% 5%;
 		padding: 0;	
 	}
