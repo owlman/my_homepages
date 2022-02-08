@@ -40,6 +40,10 @@ header .phone_nav {
 	display: none;
 }
 
+.phone_aboutme {
+    display: none;
+}
+
 aside {
 	margin: auto;
 	width: 16%;
@@ -331,10 +335,6 @@ footer .copyright {
 		text-align: center;
 	}
 
-	/*header .phone_nav li:first-child {
-		border-right: dashed 1px;
-	}*/
-
 	header .phone_nav a {
 		padding: 0.2rem 0;
 		display: block;
@@ -347,79 +347,44 @@ footer .copyright {
 		background-color: black;
 	}
 
-	aside {
-		display: block;
-		margin: 0.5rem auto;
-		padding: 0 ;	
-		width: 98%;
+    .phone_aboutme {
+        display: block;
+        padding: 0.5rem;
+		width: 96%;
+        background-color: white;
+	    border-radius: 0.5rem;
 		float: none;
-	}
+		clear: both;
+    }
 
-	aside .aboutme {
-		margin: 0;
-		padding: 0;	
-		position: relative;	
-        text-align: center;
-	}
+    .phone_aboutme img {
+        width: 6.5rem;
+        margin-right: 2%;
+        display: block;
+        float: left;
+    }
 
-	aside .aboutme img {
-		display: block;
-		margin: 5%;
-		float: left;
-	}
+    .phone_aboutme ul {
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+    }
 
-	aside .aboutme h3 {
+    .phone_aboutme ul li {
+        list-style-type: none;
+		margin: 0.6rem auto;
+    }
+
+
+    .phone_aboutme ul img {
+        width: 1.5rem;
+    }
+
+	aside {
         display: none;
     }
-    
-    aside .aboutme ul {
-		margin: 1% 5%;
-		padding: 0;	
-	}
-
-	aside .aboutme ul li {
-		display: inline-block;
-		width: 20%;
-	}
-
-	aside .aboutme ul a {
-		display: block;
-	}
-
-	aside .aboutme ul img {
-		margin: 0 0.2rem;
-		padding: 0;
-		width: 2rem;
-	}
-
-	aside .myinfo {
-		display: block;
-		margin: 1% 0;
-		width: 95%;	
-		float: right;				
-	}
-
-	aside .myinfo h4 {
-        text-align: left;
-        font-size: 1.2rem;
-		margin: 0.5rem 2rem;		
-	}
-
-    aside .myinfo .interest {
-        margin: 1% 5%;
-		padding: 0; 
-    }
-
-    aside .myinfo .interest li img {
-    	margin: 0 0.2rem;
-		padding: 0;
-	    width: 2rem;
-    }    
-
-	aside nav {
-		display: none;
-	}
-
+	
 	section .main {
 		display: block;
 		margin: 0.5rem auto;
