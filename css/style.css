@@ -47,9 +47,10 @@ header .phone_nav {
 aside {
 	margin: auto;
 	width: 16%;
-	background-color: white;	
 	float: left; 
+	background-color: white;	
 	border-radius: 0.5rem;
+    opacity: 0.85;
 }
 
 aside .aboutme {
@@ -127,7 +128,6 @@ nav {
 nav h4 {
     margin: 0;
 	padding: 0.5rem;
-	background-color: #eee;
 }
 
 nav ul {
@@ -152,6 +152,7 @@ nav .friend li{
 section {
 	margin: auto;
 	width: 95%;	
+    opacity: 0.9;
 }
 
 section .main {
@@ -167,8 +168,6 @@ section .main h2 {
     margin: 0;
 	padding-left: 0.5rem;
 	padding-bottom: 0.5rem;
-	background-color: #eee;
-	border-top-right-radius: 2rem;
 }
 
 section .main .owlman_info {
@@ -314,14 +313,14 @@ footer .copyright {
     }
 
 	header h1 {
-		margin: 0.2rem auto;
+		margin: auto;
 		font-size: 1.8rem;
 		text-align: center;
 		vertical-align: middle;
 	}
 
 	header .phone_nav {
-        margin: 0 1.5rem;
+        margin: 0.5rem;
         display: table;
 		width: 90%;		
 	}
@@ -336,7 +335,8 @@ footer .copyright {
 	}
 
 	header .phone_nav a {
-		padding: 0.2rem 0;
+		padding: 0.4rem;
+        font-size: 1.2rem;
 		display: block;
 		width: 100%;
 		height: 100%;
@@ -344,7 +344,7 @@ footer .copyright {
 	}
 
 	header .phone_nav a:hover {
-		background-color: black;
+	    color: burlywood;
 	}
 
     .phone_aboutme {
@@ -358,7 +358,7 @@ footer .copyright {
     }
 
     .phone_aboutme img {
-        width: 6.5rem;
+        width: 8rem;
         margin-right: 2%;
         display: block;
         float: left;
@@ -368,7 +368,7 @@ footer .copyright {
         padding: 0;
         margin-top: 0;
         margin-bottom: 1.5rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .phone_aboutme ul li {
@@ -378,7 +378,7 @@ footer .copyright {
 
 
     .phone_aboutme ul img {
-        width: 1.5rem;
+        width: 1.2rem;
     }
 
 	aside {
