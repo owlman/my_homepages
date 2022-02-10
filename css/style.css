@@ -285,10 +285,11 @@ footer {
 	border-top: dashed 1px;
 	margin-top: 0.5rem;
 	color: white;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 footer .copyright {
-	font-size: 0.8rem;
 	margin: 0;
 	padding: 0;
 }
@@ -337,6 +338,7 @@ footer .copyright {
 	header .phone_nav a {
 		padding: 0.4rem;
         font-size: 1.2rem;
+        font-weight: bold;
 		display: block;
 		width: 100%;
 		color: white;		
