@@ -50,7 +50,7 @@ aside {
 	float: left; 
 	background-color: white;	
 	border-radius: 0.5rem;
-    opacity: 0.85;
+    opacity: 0.95;
 }
 
 aside .aboutme {
@@ -152,7 +152,7 @@ nav .friend li{
 section {
 	margin: auto;
 	width: 95%;	
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 section .main {
