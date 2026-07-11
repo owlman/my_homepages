@@ -1,449 +1,788 @@
 @charset "utf-8";
 
+/* ========================================
+   凌杰的个人网站 — Bootstrap 5 覆写
+   技术作家风格：温暖、干净、内容优先
+   ======================================== */
+
+/* ---------- 基础色调 ---------- */
+:root {
+    --tw-bg: #f5f0eb;
+    --tw-surface: #ffffff;
+    --tw-text: #2c2c2c;
+    --tw-muted: #7a7a7a;
+    --tw-accent: #8b7355;
+    --tw-accent-light: #a0896e;
+    --tw-border: #e5ddd5;
+    --tw-nav-bg: #2c3e50;
+    --tw-code-bg: #f0ece4;
+    --tw-heading: #2c3e50;
+    --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
+                 "Helvetica Neue", Arial, sans-serif;
+    --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC",
+                  "STSong", "SimSun", Georgia, serif;
+}
+
+/* ---------- 深色模式覆写 ---------- */
+[data-bs-theme="dark"] {
+    --tw-bg: #1a1d21;
+    --tw-surface: #242830;
+    --tw-text: #e4e4e4;
+    --tw-muted: #9aa0a6;
+    --tw-accent: #c2a77f;
+    --tw-accent-light: #d4bd97;
+    --tw-border: #3a3f47;
+    --tw-nav-bg: #15171a;
+    --tw-code-bg: #2d323b;
+    --tw-heading: #e6ddd0;
+}
+
 body {
-	margin: 0;
-	font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
-	background-image: url("../img/bg.jpg");	
-	font-size: 1rem;
+    background-color: var(--tw-bg);
+    color: var(--tw-text);
+    font-family: var(--font-sans);
+    line-height: 1.8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-a {
-	text-decoration: none;
-	color: gray;
+html {
+    scroll-behavior: smooth;
 }
 
-.clear {
-	clear: both;
+/* ---------- 导航栏 ---------- */
+.navbar {
+    background-color: var(--tw-nav-bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-header {
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.navbar-dark .nav-link {
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+    font-size: 0.95rem;
+}
+
+.navbar-dark .nav-link:hover {
+    color: #fff;
+}
+
+/* ---------- 侧边栏卡片 ---------- */
+.sidebar-card {
+    background: var(--tw-surface);
+    border-radius: 8px;
+    border: 1px solid var(--tw-border);
+    overflow: hidden;
+}
+
+/* ---------- 品牌 SVG 图标 ---------- */
+.brand-icon {
     display: inline-block;
-	margin: 1.5rem 2rem;
-	width: 95%;	
-	color: white;
+    vertical-align: -0.15em;
+    fill: currentColor;
 }
 
-header h1 {
-    display: inline ;
-	margin: auto;
-	font-size: 3rem;
-	text-shadow: 0 2px 0 gray;
+.nav-icon {
+    width: 16px;
+    height: 16px;
+    fill: var(--tw-accent);
+    margin-right: 6px;
+    vertical-align: -0.15em;
 }
 
-header h1 img {
-    display: inline ;
-	width: 4.5rem;
-	vertical-align: middle;
+/* ---------- 深色模式切换按钮 ---------- */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-header .phone_nav {
-	display: none;
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-.phone_aboutme {
+.theme-toggle .brand-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.theme-toggle .icon-sun {
     display: none;
 }
 
-aside {
-	margin: auto;
-	width: 16%;
-	float: left; 
-	background-color: white;	
-	border-radius: 0.5rem;
-    opacity: 0.95;
+[data-bs-theme="dark"] .theme-toggle .icon-sun {
+    display: inline-block;
 }
 
-aside .aboutme {
-	margin: 0;
-	padding: 0.2rem;
-	border-radius: 0.5rem;
-	background-color: white;
+[data-bs-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
 }
 
-aside .aboutme img {
-	display: block;	
-	margin: 0.2rem auto;
-	width: 85%;	
-	border-radius: 5rem;
-}
-
-aside .aboutme h3 {
-    text-align: center;
-    margin: 0;
+.info-list {
+    list-style: none;
     padding: 0;
-}
-
-aside .aboutme ul {
-    text-align: center;
-	margin: 0;
-	padding: 0;
-}
-
-aside .aboutme ul li {
-	display: inline-block;
-}
-
-aside .aboutme ul a {
-	display: block;
-    margin: 0 0.2rem;
-}
-
-aside .aboutme ul img {
-	width: 1.5rem;
-}
-
-aside .myinfo {
-	display: block;	
-	margin: 0 auto;
-	padding: 0.5rem;
-	width: 85%;	
-	text-align: left;
-}
-
-aside .myinfo h4 {
-	margin: auto;
-	margin-bottom: 0.25rem;
-}
-
-aside .myinfo .interest {
-    text-align: center;
-	margin: 0;
-	padding: 0;
-}
-
-aside .myinfo .interest li {
-	display: inline-block;
-}
-
-aside .myinfo .interest li img {
-	width: 2rem;
-}
-
-nav {
-	margin: auto;
-    margin-bottom: 2rem;
-	width: 95%;
-}
-
-nav h4 {
     margin: 0;
-	padding: 0.5rem;
+    font-size: 0.9rem;
 }
 
-nav ul {
-    margin: 0.4rem;
-    padding-left: 0.4rem;
+.info-list li {
+    padding: 3px 0;
 }
 
-nav .sns li {
-    list-style-type: none;
-    background: url("../img/sns.jpg") no-repeat;
-    background-size: 1.5rem 1.5rem;
-    text-indent: 2rem;
+.info-label {
+    display: inline-block;
+    min-width: 3em;
+    color: var(--tw-muted);
+    font-size: 0.85rem;
 }
 
-nav .friend li{
-    list-style-type: none;
-    background: url("../img/friend.jpg") no-repeat;
-    background-size: 1.5rem 1.5rem;
-    text-indent: 2rem;
+.interest-icon {
+    width: 28px;
+    height: 28px;
+    fill: var(--tw-accent);
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
-section {
-	margin: auto;
-	width: 95%;	
-    opacity: 0.95;
+.interest-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
-section .main {
-	margin: auto;
-	padding: 1.5%;
-	width: 80%;
-	background-color: white;
-	float: right;
-	border-radius: 0.5rem;
-}
-
-section .main h2 {
+.side-nav {
+    list-style: none;
+    padding: 0;
     margin: 0;
-	padding-left: 0.5rem;
-	padding-bottom: 0.5rem;
 }
 
-section .main .owlman_info {
-	margin: auto;
-	width: 100%;	
+.side-nav li {
+    padding: 4px 0;
 }
 
-section .main .owlman_info p {
-	margin: 0.5rem auto;
-	padding: 0 1.5rem;
-	text-align: justify; 
-}
-section .main .owlman_info h3{
-    margin-left: 1.5rem;
-}
-
-section .main .owlman_info ul{
-    margin-left: 2rem;
+.side-nav a {
+    color: var(--tw-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    display: block;
+    padding: 2px 0;
 }
 
-section .main .last_book {
-	margin: auto;
-	width: 100%;
+.side-nav a:hover {
+    color: #5a4a3a;
 }
 
-section .main .last_book .book {
-	margin: 0.5rem auto;
-	width: 100%;
-	padding-left: 1.5rem;
+/* ---------- 书籍展示 ---------- */
+.book-cover {
+    max-width: 190px;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-section .main .last_book .book .cover {
-	float: left;
+.book-cover-link:hover .book-cover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-section .main .last_book .book .cover img {
-	margin: auto;
-	height: 12rem;
-	text-align: center;
+.book-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
 }
 
-section .main .last_book .book .message 
-{
-	margin: 0;
-	padding: 0;
-	margin-left: 10rem;
+.book-meta {
+    font-size: 0.9rem;
+    color: var(--tw-muted);
+    margin-bottom: 1rem;
 }
 
-section .main .last_book .book .message .title {
-	margin: 0;
-	padding: 0;
-	width: auto;		
+.shop-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--tw-code-bg);
+    border-radius: 6px;
+    color: var(--tw-accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-right: 6px;
+    transition: background 0.2s, color 0.2s;
 }
 
-section .main .last_book .book .message .title h3 {
-	margin-top: 0;
-	margin-bottom: 0.4rem; 	
+.shop-badge:hover {
+    background: var(--tw-accent);
+    color: #fff;
 }
 
-section .main .last_book .book .message .title ul {
-	margin: 0;
-	padding: 0;
-	margin-left: 0.5rem;
-	font-size: 0.8rem;
-	color: gray;
+.book-desc {
+    border-left: 3px solid var(--tw-accent);
+    padding-left: 1rem;
+    font-size: 0.95rem;
+    color: var(--tw-text);
 }
 
-section .main .last_book .book .message .title li {
-	display: inline;
-	margin-right: 0.2rem;
+.book-desc p {
+    margin-bottom: 0.6rem;
 }
 
-section .main .last_book .book .message .shop {
-	margin: 0.2rem 0;
-	display: inline-block;
+/* ---------- 作品分类 Tab ---------- */
+.works-tabs {
+    border-bottom: 1px solid var(--tw-border);
 }
 
-section .main .last_book .book .message .shop ul {
-	display: inline-block;	
+.works-tabs .nav-link {
+    color: var(--tw-muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
 }
 
-section .main .last_book .book .message .shop li {
-	display: inline;
-	margin-right: 0.3rem;
+.works-tabs .nav-link:hover {
+    color: var(--tw-accent);
+    border-bottom-color: var(--tw-border);
 }
 
-section .main .last_book .book .message .shop a {
-	font-weight: bold;
-	background-color: #ccc;
-	border-radius: 8px;
-	margin: 0;
-	padding: 0.3rem 0.6rem;
-} 
-
-section .main .last_book .book .message .shop a:hover {
-	background-color: black;
-	color: white;
-}
-section .main .last_book .book .message .content {
-	margin: 0;
-	margin-left: 0.5rem;
-	width: auto;
-	border-left: solid 0.2rem #ccc;
+.works-tabs .nav-link.active {
+    color: var(--tw-heading);
+    background: transparent;
+    border-bottom-color: var(--tw-accent);
 }
 
-section .main .last_book .book .message .content p {
-	padding-left: 0.5rem;
-	padding-right: 3.5rem;
-	text-align: justify;
+.count-badge {
+    font-size: 0.7rem;
+    background: var(--tw-accent);
+    color: #fff;
+    border-radius: 10px;
+    padding: 1px 7px;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-weight: 600;
 }
 
-footer {
-	margin: auto;
-	width: 95%;	
-	border-top: dashed 1px;
-	margin-top: 0.5rem;
-	color: white;
-    font-size: 1rem;
-    font-weight: bold;
+/* ---------- 封面网格 ---------- */
+.book-thumb {
+    display: block;
+    text-decoration: none;
+    text-align: center;
 }
 
-footer .copyright {
-	margin: 0;
-	padding: 0;
+.book-thumb img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+    background: var(--tw-code-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s, box-shadow 0.25s;
 }
 
-/*以下为响应式部分*/
-@media screen and (min-width: 768px) {
-	
-	section .main .last_book .book .message .content p {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 5;
-		-webkit-box-orient: vertical;		
-	}	
+.book-thumb:hover img {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 768px) {
-	
-    header {
-        margin: 1rem;
-        padding: 0;
+.book-thumb-title {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    color: var(--tw-muted);
+    transition: color 0.2s;
+}
+
+.book-thumb:hover .book-thumb-title {
+    color: var(--tw-accent);
+}
+
+/* ---------- 响应式微调 ---------- */
+@media (max-width: 767.98px) {
+    .content-card {
+        padding: 1.2rem;
     }
 
-	header h1 {
-		margin: auto;
-		font-size: 1.8rem;
-		text-align: center;
-		vertical-align: middle;
-	}
-
-	header .phone_nav {
-        margin: 0.5rem;
-        display: table;
-		width: 90%;		
-	}
-
-	header .phone_nav ul {
-		display: table-row;
-	}
-
-	header .phone_nav ul li {
-		display: table-cell;
-		text-align: center;
-	}
-
-	header .phone_nav a {
-		padding: 0.4rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-		display: block;
-		width: 100%;
-		color: white;		
-	}
-
-	header .phone_nav a:hover {
-	    color: burlywood;
-        background-color: white;
-	}
-
-    .phone_aboutme {
-        display: block;
-        padding: 0.5rem;
-		width: 96%;
-        background-color: white;
-	    border-radius: 0.5rem;
-		float: none;
-		clear: both;
+    .book-desc {
+        border-left: none;
+        padding-left: 0;
     }
 
-    .phone_aboutme img {
-        width: 8rem;
-        margin-right: 1.5%;
-        display: block;
-        float: left;
+    .book-cover {
+        max-width: 160px;
+        margin: 0 auto 1rem;
     }
+}
 
-    .phone_aboutme ul {
-        padding: 0;
-        margin-bottom: 1.5rem;
-        font-size: 1rem;
+/* ==========================================================
+   设计重构：导航 / Hero / 区块 / 时间线 / 技能 / 文章 / 联系
+   ========================================================== */
+
+/* ---------- 导航栏（社交群组 + 锚点） ---------- */
+.navbar {
+    transition: background-color 0.4s ease;
+}
+
+.navbar .nav-link {
+    position: relative;
+    font-weight: 500;
+}
+
+/* ---------- Hero 首屏 ---------- */
+.hero {
+    background: linear-gradient(135deg, var(--tw-nav-bg) 0%, #3a5069 100%);
+    color: #fff;
+    padding: 4rem 0 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: heroFadeIn 0.8s ease forwards;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+[data-bs-theme="dark"] .hero {
+    background: linear-gradient(135deg, #15171a 0%, #23303d 100%);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(194, 167, 127, 0.18), transparent 60%);
+    pointer-events: none;
+}
+
+.hero-avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 2px var(--tw-accent-light), 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.6s 0.1s ease both;
+}
+
+.hero-name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    letter-spacing: 4px;
+    margin: 1rem 0 0.5rem;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.6s 0.2s ease both;
+}
+
+.hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--tw-accent-light);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.6s 0.3s ease both;
+}
+
+.hero-sub {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.6s 0.4s ease both;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.6s 0.5s ease both;
+}
+
+.btn-accent {
+    background: var(--tw-accent);
+    border: 1px solid var(--tw-accent);
+    color: #fff;
+    font-weight: 500;
+    padding: 0.5rem 1.6rem;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-accent:hover {
+    background: var(--tw-accent-light);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-outline-accent {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-weight: 500;
+    padding: 0.5rem 1.6rem;
+    border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.btn-outline-accent:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.hero-social {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.6s 0.6s ease both;
+}
+
+@keyframes heroSlideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.hero-social a:hover {
+    background: var(--tw-accent);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.hero-social .brand-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* ---------- 区块通用 ---------- */
+.section {
+    padding: 3rem 0 1rem;
+    scroll-margin-top: 70px;
+}
+
+.section-intro {
+    text-align: center;
+    color: var(--tw-muted);
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+}
+
+/* ---------- 技能标签 ---------- */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--tw-code-bg);
+    color: var(--tw-accent);
+    border: 1px solid var(--tw-border);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.skill-tag:hover {
+    background: var(--tw-accent);
+    color: #fff;
+}
+
+/* ---------- 荣誉时间线 ---------- */
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--tw-border);
+}
+
+.timeline li {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.timeline li:last-child {
+    padding-bottom: 0;
+}
+
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--tw-accent);
+    box-shadow: 0 0 0 3px var(--tw-surface);
+}
+
+.timeline-year {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--tw-accent);
+    margin-right: 0.5rem;
+}
+
+/* ---------- 近期文章 ---------- */
+.post-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.2rem 1.3rem;
+    background: var(--tw-surface);
+    border: 1px solid var(--tw-border);
+    border-left: 3px solid var(--tw-accent);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--tw-text);
+    transition: transform 0.2s, box-shadow 0.2s, border-left-color 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    color: var(--tw-text);
+}
+
+.post-card-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.post-card-more {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--tw-accent);
+}
+
+.post-card-date {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--tw-muted);
+    margin-top: 0.4rem;
+}
+
+/* ---------- 联系区 ---------- */
+.contact-card {
+    text-align: center;
+}
+
+.contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.contact-email .brand-icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--tw-accent);
+}
+
+.contact-social {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--tw-code-bg);
+    color: var(--tw-accent);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.contact-social a:hover {
+    background: var(--tw-accent);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.contact-social .brand-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* ---------- 回到顶部 ---------- */
+.back-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--tw-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1030;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--tw-accent-light);
+}
+
+.back-to-top .brand-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* ---------- 页脚增强 ---------- */
+.footer {
+    background: var(--tw-nav-bg);
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: auto;
+    padding: 2.5rem 0 2rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.footer-nav a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: #fff;
+}
+
+/* ---------- 滚动进入动画 ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
-
-    .phone_aboutme ul li {
-        list-style-type: none;
-		margin: 0.6rem 0.2rem;
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
+}
 
-
-    .phone_aboutme ul img {
-        width: 1.1rem;
-    }
-
-	aside {
-        display: none;
-    }
-	
-	section .main {
-		display: block;
-		margin: 0.5rem auto;
-		width: 96%;
-		float: none;
-		clear: both;
-	}
-
-	section .main .owlman_info ul {
-		margin-right: 2.5rem;
-	}
-
-	section .main .last_book .book .cover {
-		display: block;
-		margin: auto;
-		float: none;
-	}
-
-	section .main .last_book .book .cover img {
-		width: 25%;
-		height: auto;
-        margin-right: 2%;
-        display: block;
-        float: left;
-	}
-
-	section .main .last_book .book .message 
-	{
-		margin: 1rem auto;
-	}
-
-	section .main .last_book .book .message .title ul {
-		margin: 0.5rem;
-		list-style: none;
-	}
-
-	section .main .last_book .book .message .title li {
-		display: list-item;
-	}
-
-	section .main .last_book .book .message .shop ul {
-		display: inline-block;	
-        margin-bottom: 1rem;
-	}
-
-	section .main .last_book .book .message .shop li {
-		display: inline;
-		margin-right: 0.3rem;
-	} 
-
-	section .main .last_book .book .message .content {
-		margin-right: 4rem;
-		width: auto;
-		border-left: none;
-	}
-
-	section .main .last_book .book .message .content p {
-		padding: 0;
-	}
-
+/* ---------- 阅读进度指示器 ---------- */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--tw-accent), var(--tw-accent-light));
+    z-index: 9999;
+    transition: width 0.1s linear;
 }

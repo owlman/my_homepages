@@ -1,0 +1,13 @@
+{
+	"name": "凌杰的个人网站",
+	"short_name": "owlman",
+	"description": "计算机专业领域的技术作家、翻译与自由软件开发者。",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#f5f0eb",
+	"theme_color": "#2c3e50",
+	"icons": [
+		{ "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+		{ "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+	]
+}
