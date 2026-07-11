@@ -58,6 +58,7 @@
 		el.innerHTML = list
 			.map(function (b) {
 				var t = escapeHtml(b.title);
+				var yearBadge = b.year ? '<span class="book-year">' + b.year + "</span>" : "";
 				return (
 					'<div class="col">' +
 					'<a class="book-thumb" target="_blank" rel="noopener noreferrer" href="' +
@@ -65,6 +66,7 @@
 					'" title="' +
 					t +
 					'">' +
+					'<span class="book-thumb-wrap">' +
 					'<img src="' +
 					escapeHtml(b.cover) +
 					'" alt="《' +
@@ -74,6 +76,8 @@
 					'" height="' +
 					b.h +
 					'" loading="lazy" />' +
+					yearBadge +
+					"</span>" +
 					'<span class="book-thumb-title">' +
 					t +
 					"</span>" +

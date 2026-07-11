@@ -289,6 +289,8 @@ html {
 .book-thumb img {
     width: 100%;
     max-width: 200px;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
     height: auto;
     margin: 0 auto;
     border-radius: 4px;
@@ -313,6 +315,36 @@ html {
 
 .book-thumb:hover .book-thumb-title {
     color: var(--tw-accent);
+}
+
+.book-thumb-wrap {
+    position: relative;
+    display: block;
+}
+
+.book-year {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    background: var(--tw-accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 3px;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+}
+
+/* ---------- 主体内容卡片 ---------- */
+.content-card p {
+    max-width: 70ch;
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+.content-card .book-desc p {
+    max-width: none;
 }
 
 /* ---------- 响应式微调 ---------- */
