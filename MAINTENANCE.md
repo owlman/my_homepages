@@ -35,19 +35,19 @@ MyHome/
 ├── js/
 │   └── main.js            # 主题切换 / 数据加载 / 滚动动画 / Tab 路由
 ├── img/
-│   ├── me.png             # 头像（Hero / OG / JSON-LD / 苹果设备除外）
-│   ├── owl.png            # 旧 logo（已无引用，保留以备）
+│   ├── me.png             # 头像（Hero / OG / JSON-LD）+ favicon 源
+│   ├── owl.png            # 旧 logo（已无引用，保留作历史）
+│   ├── me.jpg             # 早期从 me.png 转的 JPG（已弃用）
 │   ├── books/             # 15 本封面（WebP 格式，width 400px）
-│   ├── icons/             # SVG 图标（备用，未被 sprite 引用）
-│   ├── icon-192.png       # PWA 图标
-│   ├── icon-512.png       # PWA 图标
+│   ├── icons/             # 旧 Simple Icons 目录（已内联进 sprite）
+│   ├── icon-192.png       # PWA 图标（从 me.png 生成）
+│   ├── icon-512.png       # PWA 图标（从 me.png 生成）
 │   ├── apple-touch-icon.png
 │   ├── favicon-16.png
 │   ├── favicon-32.png
 │   ├── read.png / write.jpg / coding.jpg / movie.jpg
-│                          # 兴趣图标（已弃用，未删除可作历史）
-│   ├── js_guide.png       # 旧精选封面（已弃用，未删除可作历史）
-│   └── icons/*.svg        # Simple Icons（已内联进 sprite）
+│   │                       # 兴趣图标（已弃用，未删除可作历史）
+│   └── js_guide.png       # 旧精选封面（已弃用）
 └── vendor/
     └── bootstrap/
         ├── css/bootstrap.min.css
@@ -76,6 +76,7 @@ MyHome/
 - `w`/`h` 用于保留图片原始宽高（防 CLS）
 - `year` 是出版年份，会在封面右下角显示
 - 封面必须本地化（豆瓣图床防盗链，**不可直接外链**）
+- 顺序：每个 type 内按 year 倒序（最新在前）
 
 封面获取方法：服务端带 Referer 下载到 `img/books/`，转 WebP（建议 quality 80，width ≤400）。
 
@@ -105,19 +106,29 @@ Tab 角标的数字会自动从 JSON 计数。
 
 ### 修改购买链接
 
-代表作卡片（`index.htm` 搜索 `JavaScript 全栈开发`）的 `.shop-badge` 区。
+代表作卡片（`index.htm` 搜索 `JavaScript 全栈开发`）的 `.shop-badge` 区。目前有 `异步社区` + `当当网` 两个链接。
+
+### 修改联系区邮箱
+
+联系区展示两个邮箱（QQ + Gmail）并列：
+- QQ 邮箱：`owl2008@qq.com` + 国内 标签
+- Gmail：`jie.owl2008@gmail.com` + 国际 标签
+
+`index.htm` 搜索 `contact-email` 修改对应 `<p>` 块。
 
 ### 修改社交链接
 
-- Hero 区（`index.htm` 搜索 `class="hero-social"`）和联系区（搜索 `class="contact-social"`）
-- 这两处是仅有的社交图标展示位置，**已精简**到 2 处
-- 图标定义在 SVG sprite 顶部（搜索 `<svg xmlns`）
+**两处展示位置**，顺序必须保持一致（QQ → GitHub → 码云 → 微博 → 豆瓣 → X → Facebook）：
+- Hero 区（`index.htm` 搜索 `class="hero-social"`）
+- 联系区（搜索 `class="contact-social"`）
+
+图标定义在 SVG sprite 顶部（搜索 `<svg xmlns`）。新增图标：到 simple-icons CDN 下载对应 `.svg`，提取 `<path d="...">` 内联为 `<symbol id="i-xxx">`。
 
 ## 关键设计约定
 
 ### 字体
 
-- **标题（h1-h3）**：`var(--font-serif)` = `Noto Serif SC` → `Source Han Serif SC` → `Songti SC` → `STSong` → `SimSun` → Georgia → serif
+- **标题（`.content-heading` h2 / `.sub-heading` h3/h4）**：`var(--font-serif)` = `Noto Serif SC` → `Source Han Serif SC` → `Songti SC` → `STSong` → `SimSun` → Georgia → serif
 - **正文**：`var(--font-sans)` = `Noto Sans SC` → `PingFang SC` → `Microsoft YaHei` → `Helvetica Neue` → Arial → sans-serif
 
 若 Noto Serif SC 在国内访问慢，可考虑：1) 增加 preload，2) 用国内字体镜像，3) 仅用系统衬线字体。
@@ -137,17 +148,17 @@ Tab 角标的数字会自动从 JSON 计数。
 
 - `section` 上下 padding 3rem
 - `content-card` padding 2rem
-- 区块标题 `content-heading`：宋体 1.5rem，2px 棕色下划线
-- 区块子标题 `sub-heading`：宋体 1.15rem
-- 段落行高 1.8
+- 区块标题 `.content-heading`：宋体 1.5rem，无下边框（已移除）
+- 区块子标题 `.sub-heading`：宋体 1.1rem，`margin-top: 1.5rem; margin-bottom: 1rem`
+- 段落行高 1.8，`.content-card p` 限宽 `max-width: 70ch`
 
 ### 交互
 
 - **入场动画**：`section` 滚动到视口时渐入（IntersectionObserver）
-- **Hero 入场**：元素依次上滑（CSS `@keyframes`）
+- **Hero 入场**：元素依次上滑（CSS `@keyframes`，0.1s/0.2s/.../0.6s 错峰）
 - **主题切换**：CSS `transition` 0.4s 颜色过渡
 - **滚动**：CSS `scroll-behavior: smooth`，section 有 `scroll-margin-top: 70px` 防 sticky 导航遮挡
-- **阅读进度条**：顶部 3px 渐变细线
+- **阅读进度条**：顶部 3px 渐变细线（`#readingProgress`）
 - **回到顶部**：滚动 > 400px 时显示
 - **Tab hash 路由**：URL `#works-original` / `#works-translation` 直接激活对应 Tab
 
@@ -168,7 +179,7 @@ Tab 角标的数字会自动从 JSON 计数。
 
 ### `css/style.css`
 
-组织顺序：变量 → 基础样式 → 导航 → Hero → 区块 → 时间线 → 技能 → 文章 → 联系 → 回到顶部 → 页脚 → 滚动动画。
+组织顺序：变量 → 基础样式 → 响应式 → 导航 → Hero → 区块 → 时间线 → 技能 → 文章 → 联系 → 回到顶部 → 页脚 → 滚动动画。
 
 每节有 `/* ---------- */` 注释，便于定位。
 
@@ -182,30 +193,65 @@ IIFE 形式，关键函数：
 
 ### `books.json` / `posts.json`
 
-- 都按 type 过滤（books）或直接渲染（posts）
+- books 按 type 过滤（original/translation）
+- posts 直接渲染
 - 加载失败时控制台会报错，页面降级为空
+
+## 社交图标顺序约定
+
+**统一顺序**（Hero 与联系区必须一致）：
+1. QQ 邮箱（mailto）
+2. GitHub
+3. 码云
+4. 微博
+5. 豆瓣
+6. X (Twitter)
+7. Facebook
+
+Gmail 不在图标列表（已用文字邮箱地址 + 标签在联系区独立展示）。
 
 ## 易踩坑点
 
 1. **豆瓣图床防盗链**：**不可** 直接在 `<img src="https://img.doubanio.com/...">` 外链，403。必须下载到本地 `img/books/`。
 2. **微信公众号/微博链接**：`target="_blank"` 必加 `rel="noopener noreferrer"`。
-3. **Hero 头像**：必须用 `me.png`（1024×1360），`owl.png` 已弃用但作为 favicon 源文件保留。
+3. **头像/favicon**：源文件是 `me.png`，favicon 系列（16/32/180/192/512）必须**用 Pillow 从 me.png 重新生成**，否则浏览器标签页与实际头像不一致。
 4. **深色模式默认**：用户首次访问就是深色，主题切换会存 localStorage。如需重置，清除 localStorage 即可。
 5. **GitHub Pages 部署**：gh-pages 分支，push 后自动部署。
 6. **CNAME 文件**：保持不变（`www.owlman.cn`），删除会导致域名失效。
+7. **本地测试 CSS 修改**：浏览器可能缓存旧 CSS，刷新时**加查询参数**（如 `index.htm?v=2`）强制重新加载，避免看到陈旧版本误导。
+8. **联系区分隔线**：用 `border-top` 不用 `::before + position: absolute`（后者在 `inline-flex` 父元素中会出现 60% 宽度居中偏移问题）。
+9. **社交图标顺序**：Hero 和联系区两处必须保持完全一致。
 
 ## 数据获取小贴士
 
-### 书籍封面
+### 书籍封面（服务端下载 + 转换）
 
-```bash
+```powershell
+$headers = @{Referer="https://book.douban.com/"; UserAgent="Mozilla/5.0"}
 Invoke-WebRequest "https://img.doubanio.com/view/subject/l/public/s<id>.jpg" `
-  -OutFile "img/books/<id>.jpg" `
-  -Headers @{Referer="https://book.douban.com/"}
-# 然后用 Python PIL 转为 WebP、限宽 400：
-# im = Image.open(src).convert("RGB")
-# im = im.resize((400, h), Image.LANCZOS)
-# im.save(dst, "WEBP", quality=80)
+  -OutFile "img/books/<id>.jpg" -Headers $headers
+```
+
+```python
+# 转 WebP、限宽 400
+from PIL import Image
+im = Image.open("img/books/<id>.jpg").convert("RGB")
+w, h = im.size
+if w > 400:
+    h = round(h * 400 / w); w = 400
+    im = im.resize((w, h), Image.LANCZOS)
+im.save("img/books/<id>.webp", "WEBP", quality=80, method=6)
+```
+
+### 出版年份（批量）
+
+```powershell
+$ids = @(10483528, 11580452, 21372235, ...)
+foreach ($id in $ids) {
+  $html = Invoke-WebRequest "https://book.douban.com/subject/$id/" -UserAgent $ua
+  $year = if ($html.Content -match "(\d{4})[-/]\d{1,2}[-/]\d{1,2}") { $matches[1] }
+  Write-Output "$id => $year"
+}
 ```
 
 ### 文章日期
@@ -224,12 +270,18 @@ Invoke-WebRequest "https://img.doubanio.com/view/subject/l/public/s<id>.jpg" `
 | 2026-07 | 头像从 owl.png 改为 me.png（人像） |
 | 2026-07 | 深色模式设为默认 |
 | 2026-07 | 作品封面加出版年份徽章 + 正文阅读宽度优化 |
+| 2026-07 | favicon 重新生成自 me.png |
+| 2026-07 | QQ 邮箱加入社交图标首位 |
+| 2026-07 | 联系区双邮箱并列（国内/国际 标签） |
+| 2026-07 | 社交图标顺序统一（Hero 与联系区一致） |
+| 2026-07 | 修复联系我标题下方横线歪斜（border-top 替代 ::before） |
+| 2026-07 | 移除一级标题下边框（更简洁） |
+| 2026-07 | 新增 MAINTENANCE.md 维护指南 |
 
 ## 已知限制
 
 - **Noto Serif SC 走 Google Fonts CDN**，国内访问可能较慢
 - **Bootstrap 227KB 未裁剪**（PurgeCSS Windows 路径兼容问题已放弃，缓存后问题不大）
-- **社交媒体仅 Hero + 联系区两处**（已精简），如需添加回导航/页脚，需改 `<li class="navbar-social">` 类
 - **无 PWA Service Worker**（仅 manifest）
 - **无评论/留言功能**（个人主页不必要）
 - **lang="zh-cn"**：规范推荐 `zh-CN`（大写），但浏览器均能识别
