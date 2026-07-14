@@ -1,0 +1,9 @@
+[
+  { "id": "i-qqmail", "label": "QQ 邮箱", "href": "mailto:owl2008@qq.com", "external": false },
+  { "id": "i-github", "label": "GitHub", "href": "https://github.com/owlman", "external": true },
+  { "id": "i-gitee", "label": "码云", "href": "https://gitee.com/owlman", "external": true },
+  { "id": "i-weibo", "label": "微博", "href": "https://weibo.com/owlman", "external": true },
+  { "id": "i-douban", "label": "豆瓣", "href": "https://www.douban.com/people/owlman/", "external": true },
+  { "id": "i-x", "label": "X (Twitter)", "href": "https://twitter.com/lingjieowl", "external": true },
+  { "id": "i-facebook", "label": "Facebook", "href": "https://www.facebook.com/jie.owlman", "external": true }
+]

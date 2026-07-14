@@ -36,10 +36,11 @@
 
 		loadBooks();
 		loadPosts();
+		renderSocial();
 		initReveal();
 		initBackToTop();
 		initReadingProgress();
-		initTabHash();
+		initTabs();
 	});
 
 	function escapeHtml(s) {
@@ -152,6 +153,47 @@
 			});
 	}
 
+	function renderSocial() {
+		var containers = [
+			document.getElementById("hero-social"),
+			document.getElementById("contact-social"),
+		].filter(Boolean);
+		if (containers.length === 0) {
+			return;
+		}
+		fetch("data/social-links.json")
+			.then(function (r) {
+				return r.json();
+			})
+			.then(function (links) {
+				var html = links
+					.map(function (l) {
+						var attrs = 'aria-label="' + escapeHtml(l.label) + '"';
+						if (l.external) {
+							attrs += ' target="_blank" rel="noopener noreferrer"';
+						}
+						return (
+							'<li><a href="' +
+							escapeHtml(l.href) +
+							'" ' +
+							attrs +
+							">" +
+							'<svg class="brand-icon" aria-hidden="true"><use href="#' +
+							escapeHtml(l.id) +
+							'" /></svg>' +
+							"</a></li>"
+						);
+					})
+					.join("");
+				containers.forEach(function (el) {
+					el.innerHTML = html;
+				});
+			})
+			.catch(function (err) {
+				console.error("加载 social-links.json 失败:", err);
+			});
+	}
+
 	function initReveal() {
 		var els = document.querySelectorAll(".reveal");
 		if (!("IntersectionObserver" in window) || els.length === 0) {
@@ -207,27 +249,55 @@
 		});
 	}
 
-	function initTabHash() {
-		var tabs = document.getElementById("worksTab");
-		if (!tabs) {
+	function initTabs() {
+		var tabBar = document.getElementById("worksTab");
+		if (!tabBar) {
 			return;
 		}
-		function switchFromHash() {
-			var hash = location.hash;
-			if (hash === "#works-original") {
-				var btn = document.getElementById("tab-original-btn");
-				if (btn) {
-					bootstrap.Tab.getOrCreateInstance(btn).show();
-				}
-			} else if (hash === "#works-translation") {
-				var btn = document.getElementById("tab-translation-btn");
-				if (btn) {
-					bootstrap.Tab.getOrCreateInstance(btn).show();
-				}
-			}
+		var buttons = tabBar.querySelectorAll("[data-tab-target]");
+		if (buttons.length === 0) {
+			return;
 		}
-		switchFromHash();
-		window.addEventListener("hashchange", switchFromHash);
+
+		function activate(target) {
+			buttons.forEach(function (btn) {
+				var isActive = btn.dataset.tabTarget === target;
+				btn.classList.toggle("active", isActive);
+				btn.setAttribute("aria-selected", isActive ? "true" : "false");
+				var panel = document.querySelector(btn.dataset.tabTarget);
+				if (panel) {
+					panel.classList.toggle("show", isActive);
+					panel.classList.toggle("active", isActive);
+				}
+			});
+		}
+
+		buttons.forEach(function (btn) {
+			btn.addEventListener("click", function () {
+				activate(btn.dataset.tabTarget);
+				var slug = btn.dataset.tabTarget
+					.replace(/^#tab-/, "")
+					.replace(/-tab$/, "");
+				var newHash = "#works-" + slug;
+				if (history.replaceState) {
+					history.replaceState(null, "", newHash);
+				}
+			});
+		});
+
+		window.addEventListener("hashchange", function () {
+			if (location.hash === "#works-translation") {
+				activate("#tab-translation");
+			} else if (location.hash === "#works-original") {
+				activate("#tab-original");
+			}
+		});
+
+		if (location.hash === "#works-translation") {
+			activate("#tab-translation");
+		} else {
+			activate("#tab-original");
+		}
 	}
 
 })();
