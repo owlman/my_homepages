@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "label", "href", "external"],
+    "properties": {
+      "id": { "type": "string", "pattern": "^i-[a-z0-9-]+$" },
+      "label": { "type": "string", "minLength": 1 },
+      "href": { "type": "string", "format": "uri" },
+      "external": { "type": "boolean" }
+    },
+    "additionalProperties": false
+  }
+}
