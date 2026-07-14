@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Git pre-push 钩子：push 前先跑 check.sh，校验不通过则阻断。
+# 安装方式：bash tools/install-hook.sh
+bash "$(dirname "$0")/check.sh"
