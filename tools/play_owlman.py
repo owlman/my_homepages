@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import sys
 from datetime import datetime, timezone
@@ -19,6 +20,16 @@ from pathlib import Path
 
 import jsonschema
 from playwright.sync_api import sync_playwright
+
+# ---------------------------------------------------------------------------
+# Windows 下 Python 子进程 stdout 默认 GBK，Claude Code 任务文件按 GBK 落盘
+# 会让 print 出来的中文变成 "����" 乱码。这里把 stdout/stderr 强制改回 UTF-8，
+# 输出 JSON 文件、Markdown 摘要也一律 UTF-8，下游渲染就不会再串码。
+# ---------------------------------------------------------------------------
+if sys.stdout.encoding and sys.stdout.encoding.lower().replace("-", "") != "utf8":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", line_buffering=True)
+if sys.stderr.encoding and sys.stderr.encoding.lower().replace("-", "") != "utf8":
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", line_buffering=True)
 
 # ---------------------------------------------------------------------------
 # 路径常量 —— 脚本自动推断项目根（tools/ ..）
