@@ -2,14 +2,14 @@
 
 /* ========================================
    凌杰的个人网站 — Bootstrap 5 覆写
-   技术作家风格：温暖、干净、内容优先
+   冷静、精确、内容优先
    ======================================== */
 
 /* ---------- 基础色调 ---------- */
 :root {
     --tw-bg: #f5f0eb;
     --tw-surface: #ffffff;
-    --tw-text: #2c2c2c;
+    --tw-text: #1a1a1a;
     --tw-muted: #7a7a7a;
     --tw-accent: #8b7355;
     --tw-accent-light: #a0896e;
@@ -21,6 +21,8 @@
                  "Helvetica Neue", Arial, sans-serif;
     --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC",
                   "STSong", "SimSun", Georgia, serif;
+    --font-mono: "Cascadia Code", "Fira Code", "JetBrains Mono",
+                 "SF Mono", "Consolas", "Courier New", monospace;
 }
 
 /* ---------- 深色模式覆写 ---------- */
@@ -56,6 +58,7 @@ html {
 .navbar {
     background-color: var(--tw-nav-bg);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background-color 0.4s ease;
 }
 
 .navbar-brand {
@@ -67,6 +70,8 @@ html {
     color: rgba(255,255,255,0.8);
     transition: color 0.2s;
     font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
 }
 
 .navbar-dark .nav-link:hover {
@@ -76,9 +81,10 @@ html {
 /* ---------- 侧边栏卡片 ---------- */
 .sidebar-card {
     background: var(--tw-surface);
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid var(--tw-border);
     overflow: hidden;
+    height: 100%;
 }
 
 /* ---------- 品牌 SVG 图标 ---------- */
@@ -101,7 +107,7 @@ html {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: rgba(255, 255, 255, 0.85);
-    border-radius: 6px;
+    border-radius: 4px;
     width: 38px;
     height: 38px;
     display: inline-flex;
@@ -141,7 +147,7 @@ html {
 }
 
 .info-list li {
-    padding: 3px 0;
+    padding: 2px 0;
 }
 
 .info-label {
@@ -152,8 +158,8 @@ html {
 }
 
 .interest-icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     fill: var(--tw-accent);
     opacity: 0.8;
     transition: opacity 0.2s, transform 0.2s;
@@ -171,7 +177,7 @@ html {
 }
 
 .side-nav li {
-    padding: 4px 0;
+    padding: 3px 0;
 }
 
 .side-nav a {
@@ -180,11 +186,11 @@ html {
     font-size: 0.9rem;
     transition: color 0.2s;
     display: block;
-    padding: 2px 0;
+    padding: 1px 0;
 }
 
 .side-nav a:hover {
-    color: #5a4a3a;
+    color: var(--tw-accent-light);
 }
 
 /* ---------- 书籍展示 ---------- */
@@ -219,7 +225,7 @@ html {
     display: inline-block;
     padding: 4px 14px;
     background: var(--tw-code-bg);
-    border-radius: 6px;
+    border-radius: 4px;
     color: var(--tw-accent);
     text-decoration: none;
     font-size: 0.85rem;
@@ -269,10 +275,11 @@ html {
 }
 
 .count-badge {
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     background: var(--tw-accent);
     color: #fff;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 1px 7px;
     margin-left: 5px;
     vertical-align: middle;
@@ -326,6 +333,7 @@ html {
     position: absolute;
     right: 4px;
     bottom: 4px;
+    font-family: var(--font-mono);
     background: var(--tw-accent);
     color: #fff;
     font-size: 0.7rem;
@@ -337,10 +345,15 @@ html {
 }
 
 /* ---------- 主体内容卡片 ---------- */
+.content-card {
+    padding: 2rem;
+}
+
 .content-card p {
     max-width: 70ch;
-    text-align: justify;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.9;
 }
 
 .content-card .book-desc p {
@@ -380,27 +393,22 @@ html {
         max-width: 160px;
         margin: 0 auto 1rem;
     }
+
+    .content-card p {
+        font-size: 1.05rem;
+        line-height: 1.85;
+    }
 }
 
 /* ==========================================================
-   设计重构：导航 / Hero / 区块 / 时间线 / 技能 / 文章 / 联系
+   设计：导航 / Hero / 区块 / 时间线 / 技能 / 文章 / 联系
    ========================================================== */
-
-/* ---------- 导航栏（社交群组 + 锚点） ---------- */
-.navbar {
-    transition: background-color 0.4s ease;
-}
-
-.navbar .nav-link {
-    position: relative;
-    font-weight: 500;
-}
 
 /* ---------- Hero 首屏 ---------- */
 .hero {
-    background: linear-gradient(135deg, var(--tw-nav-bg) 0%, #3a5069 100%);
+    background: var(--tw-nav-bg);
     color: #fff;
-    padding: 4rem 0 3.5rem;
+    padding: 3.5rem 0 2.5rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -412,60 +420,48 @@ html {
     to { opacity: 1; }
 }
 
-[data-bs-theme="dark"] .hero {
-    background: linear-gradient(135deg, #15171a 0%, #23303d 100%);
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(194, 167, 127, 0.18), transparent 60%);
-    pointer-events: none;
-}
-
 .hero-avatar {
-    width: 128px;
-    height: 128px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    padding: 6px;
+    padding: 5px;
     background: rgba(255, 255, 255, 0.08);
     box-shadow: 0 0 0 2px var(--tw-accent-light), 0 10px 30px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 1;
-    animation: heroSlideUp 0.6s 0.1s ease both;
+    animation: heroSlideUp 0.5s 0.1s ease both;
 }
 
 .hero-name {
     font-family: var(--font-serif);
     font-weight: 700;
     font-size: clamp(2rem, 5vw, 2.8rem);
-    letter-spacing: 4px;
-    margin: 1rem 0 0.5rem;
+    letter-spacing: 2px;
+    margin: 1rem 0 0.25rem;
     position: relative;
     z-index: 1;
-    animation: heroSlideUp 0.6s 0.2s ease both;
+    animation: heroSlideUp 0.5s 0.15s ease both;
 }
 
 .hero-tagline {
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
     color: var(--tw-accent-light);
     font-weight: 500;
     letter-spacing: 1px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     position: relative;
     z-index: 1;
-    animation: heroSlideUp 0.6s 0.3s ease both;
+    animation: heroSlideUp 0.5s 0.25s ease both;
 }
 
 .hero-sub {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
     position: relative;
     z-index: 1;
-    animation: heroSlideUp 0.6s 0.4s ease both;
+    animation: heroSlideUp 0.5s 0.3s ease both;
 }
 
 .hero-cta {
@@ -476,7 +472,7 @@ html {
     margin-bottom: 1.5rem;
     position: relative;
     z-index: 1;
-    animation: heroSlideUp 0.6s 0.5s ease both;
+    animation: heroSlideUp 0.5s 0.35s ease both;
 }
 
 .btn-accent {
@@ -485,8 +481,9 @@ html {
     color: #fff;
     font-weight: 500;
     padding: 0.5rem 1.6rem;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
 }
 
 .btn-accent:hover {
@@ -501,8 +498,9 @@ html {
     color: #fff;
     font-weight: 500;
     padding: 0.5rem 1.6rem;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    text-decoration: none;
 }
 
 .btn-outline-accent:hover {
@@ -521,7 +519,7 @@ html {
     margin: 0;
     position: relative;
     z-index: 1;
-    animation: heroSlideUp 0.6s 0.6s ease both;
+    animation: heroSlideUp 0.5s 0.4s ease both;
 }
 
 @keyframes heroSlideUp {
@@ -533,8 +531,8 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.85);
@@ -553,17 +551,42 @@ html {
     fill: currentColor;
 }
 
-/* ---------- 区块通用 ---------- */
-.section {
-    padding: 3rem 0 1rem;
-    scroll-margin-top: 70px;
+/* ---------- 统计数字行 ---------- */
+.hero-stats {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    animation: heroSlideUp 0.5s 0.35s ease both;
 }
 
-.section-intro {
+.hero-stat {
     text-align: center;
-    color: var(--tw-muted);
-    max-width: 40rem;
-    margin: 0 auto 2rem;
+}
+
+.hero-stat-num {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.hero-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 1px;
+}
+
+/* ---------- 区块通用 ---------- */
+.section {
+    padding: 2.5rem 0 0.5rem;
+    scroll-margin-top: 70px;
 }
 
 /* ---------- 技能标签 ---------- */
@@ -580,7 +603,7 @@ html {
     background: var(--tw-code-bg);
     color: var(--tw-accent);
     border: 1px solid var(--tw-border);
-    border-radius: 20px;
+    border-radius: 4px;
     font-size: 0.85rem;
     font-weight: 500;
     transition: background 0.2s, color 0.2s;
@@ -634,7 +657,7 @@ html {
 
 .timeline-year {
     display: inline-block;
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-weight: 700;
     color: var(--tw-accent);
     margin-right: 0.5rem;
@@ -649,7 +672,7 @@ html {
     background: var(--tw-surface);
     border: 1px solid var(--tw-border);
     border-left: 3px solid var(--tw-accent);
-    border-radius: 8px;
+    border-radius: 4px;
     text-decoration: none;
     color: var(--tw-text);
     transition: transform 0.2s, box-shadow 0.2s, border-left-color 0.2s;
@@ -678,6 +701,7 @@ html {
 
 .post-card-date {
     display: block;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     color: var(--tw-muted);
     margin-top: 0.4rem;
@@ -696,30 +720,41 @@ html {
     margin-bottom: 1rem;
 }
 
-.contact-email {
-    display: inline-flex;
+.contact-emails {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.05rem;
-    margin: 0.5rem 0 0;
+    margin: 0.5rem 0 1.2rem;
 }
 
-.contact-email-divider {
-    position: relative;
-    padding-top: 2.5rem;
-    margin-top: 1.2rem;
-    margin-bottom: 1.5rem;
-    border-top: 1px solid var(--tw-border);
+.contact-email-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1rem;
 }
 
-.contact-email .brand-icon {
-    width: 20px;
-    height: 20px;
+.contact-email-row .brand-icon {
+    width: 18px;
+    height: 18px;
     fill: var(--tw-accent);
+    flex-shrink: 0;
+}
+
+.contact-email-row a {
+    color: var(--tw-text);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.contact-email-row a:hover {
+    color: var(--tw-accent);
 }
 
 .contact-tag {
     display: inline-block;
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 1px;
@@ -743,8 +778,8 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background: var(--tw-code-bg);
     color: var(--tw-accent);
@@ -768,8 +803,8 @@ html {
     position: fixed;
     right: 1.5rem;
     bottom: 1.5rem;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border: none;
     border-radius: 50%;
     background: var(--tw-accent);
@@ -863,4 +898,13 @@ html {
     background: linear-gradient(90deg, var(--tw-accent), var(--tw-accent-light));
     z-index: 9999;
     transition: width 0.1s linear;
+}
+
+/* ---------- 键盘可访问性 ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--tw-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
