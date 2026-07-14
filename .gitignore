@@ -35,6 +35,12 @@ local.properties
 # TeXlipse plugin
 .texlipse
 
+# owlman.cn 评估工具产物
+out/
+
+# Chrome DevTools MCP 临时目录
+.playwright-mcp/
+
 # Mac OSX
 .DS_Store
 */.DS_Store

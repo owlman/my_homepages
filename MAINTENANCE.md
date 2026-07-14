@@ -199,7 +199,9 @@ IIFE 形式，关键函数：
 
 ## 社交图标顺序约定
 
-**统一顺序**（Hero 与联系区必须一致）：
+**数据源**：`data/social-links.json` 是社交图标的唯一数据源；`js/main.js` 的 `renderSocial()` 会把同一份 JSON 渲染到 Hero（`#hero-social`）和联系区（`#contact-social`）。修改顺序只需编辑该 JSON，不要在 `index.htm` 中重复维护——空 `<ul>` 占位即可。
+
+**统一顺序**（Hero 与联系区必须一致，由 JSON 决定）：
 1. QQ 邮箱（mailto）
 2. GitHub
 3. 码云
@@ -209,6 +211,8 @@ IIFE 形式，关键函数：
 7. Facebook
 
 Gmail 不在图标列表（已用文字邮箱地址 + 标签在联系区独立展示）。
+
+新增条目：到 simple-icons CDN 下载对应 `.svg`，提取 `<path d="...">` 内联为 `<symbol id="i-xxx">`，再在 `data/social-links.json` 加一项（id 必须与 symbol 一致）。
 
 ## 易踩坑点
 
@@ -277,6 +281,27 @@ foreach ($id in $ids) {
 | 2026-07 | 修复联系我标题下方横线歪斜（border-top 替代 ::before） |
 | 2026-07 | 移除一级标题下边框（更简洁） |
 | 2026-07 | 新增 MAINTENANCE.md 维护指南 |
+| 2026-07 | 引入 books.schema.json / posts.schema.json 校验数据 |
+| 2026-07 | 社交图标改由 data/social-links.json 数据驱动（消除两处硬编码） |
+| 2026-07 | 修复 about 侧栏多余 `</ul>` 闭合 |
+| 2026-07 | 统一书籍封面命名（OpenClaw 改为豆瓣 ID `38549104.webp`） |
+| 2026-07 | 引入 `tools/play_owlman.py` 作为项目专用评估工具（Playwright 抓取 + JSON Schema 校验 + 报告输出） |
+
+## 评估工具
+
+`tools/play_owlman.py` 是本项目的专用评估工具，三件事一次完成：
+
+1. **JSON Schema 校验**：`books.json`、`posts.json`、`data/social-links.json` 必须通过各自的 schema。
+2. **文件存在性校验**：`books.json` 中 `cover` 字段指向的图片必须真实存在。
+3. **Playwright 抓取线上版**：访问 `https://owlman.cn`，渲染后输出 Markdown 摘要 + 全页截图，便于发现仅在运行时显现的问题。
+
+默认输出落在 `D:\Documents\working\notes\owlman_cn_render.md` 与 `owlman_cn_full.png`；可用 `--output-dir` 改写到项目内 `out/`：
+
+```bash
+python tools/play_owlman.py --output-dir out
+```
+
+脚本结束会在 stdout 给出汇总表；任何 schema 校验失败都会以非 0 退出码报错。
 
 ## 已知限制
 
@@ -284,4 +309,3 @@ foreach ($id in $ids) {
 - **Bootstrap 227KB 未裁剪**（PurgeCSS Windows 路径兼容问题已放弃，缓存后问题不大）
 - **无 PWA Service Worker**（仅 manifest）
 - **无评论/留言功能**（个人主页不必要）
-- **lang="zh-cn"**：规范推荐 `zh-CN`（大写），但浏览器均能识别
