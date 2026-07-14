@@ -27,17 +27,17 @@
 			content="计算机专业领域的技术作家、翻译与自由软件开发者，《JavaScript 全栈开发》作者。"
 		/>
 		<meta property="og:url" content="https://www.owlman.cn/" />
-		<meta property="og:image" content="https://www.owlman.cn/img/me.png" />
+		<meta property="og:image" content="https://www.owlman.cn/img/og-image.png" />
 		<meta property="og:locale" content="zh_CN" />
 
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="凌杰的个人网站" />
 		<meta
 			name="twitter:description"
 			content="计算机专业领域的技术作家、翻译与自由软件开发者。"
 		/>
-		<meta name="twitter:image" content="https://www.owlman.cn/img/me.png" />
+		<meta name="twitter:image" content="https://www.owlman.cn/img/og-image.png" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,7 +65,7 @@
 					"image": "https://www.owlman.cn/img/me.png",
 					"jobTitle": "技术作家、译者、自由软件开发者",
 					"description": "计算机专业领域的技术作家、翻译与自由软件开发者，《JavaScript 全栈开发》作者。",
-					"knowsAbout": ["C", "C++", "Python", "JavaScript", "Web 开发", "技术写作", "技术翻译"],
+					"knowsAbout": ["C", "C++", "Python", "JavaScript", "Web 前后端开发", "技术写作", "技术翻译"],
 					"sameAs": [
 						"https://github.com/owlman",
 						"https://gitee.com/owlman",
@@ -204,15 +204,7 @@
 					<a class="btn-accent" href="#works">浏览作品</a>
 					<a class="btn-outline-accent" href="#contact">联系我</a>
 				</div>
-				<ul class="hero-social">
-					<li><a href="mailto:owl2008@qq.com" aria-label="QQ 邮箱"><svg class="brand-icon" aria-hidden="true"><use href="#i-qqmail" /></svg></a></li>
-					<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/owlman" aria-label="GitHub"><svg class="brand-icon" aria-hidden="true"><use href="#i-github" /></svg></a></li>
-					<li><a target="_blank" rel="noopener noreferrer" href="https://gitee.com/owlman" aria-label="码云"><svg class="brand-icon" aria-hidden="true"><use href="#i-gitee" /></svg></a></li>
-					<li><a target="_blank" rel="noopener noreferrer" href="https://weibo.com/owlman" aria-label="微博"><svg class="brand-icon" aria-hidden="true"><use href="#i-weibo" /></svg></a></li>
-					<li><a target="_blank" rel="noopener noreferrer" href="https://www.douban.com/people/owlman/" aria-label="豆瓣"><svg class="brand-icon" aria-hidden="true"><use href="#i-douban" /></svg></a></li>
-					<li><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/lingjieowl" aria-label="X (Twitter)"><svg class="brand-icon" aria-hidden="true"><use href="#i-x" /></svg></a></li>
-					<li><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/jie.owlman" aria-label="Facebook"><svg class="brand-icon" aria-hidden="true"><use href="#i-facebook" /></svg></a></li>
-				</ul>
+				<ul class="hero-social" id="hero-social"></ul>
 			</div>
 		</section>
 
@@ -358,8 +350,7 @@
 							<button
 								class="nav-link active"
 								id="tab-original-btn"
-								data-bs-toggle="tab"
-								data-bs-target="#tab-original"
+								data-tab-target="#tab-original"
 								type="button"
 								role="tab"
 								aria-controls="tab-original"
@@ -372,8 +363,7 @@
 							<button
 								class="nav-link"
 								id="tab-translation-btn"
-								data-bs-toggle="tab"
-								data-bs-target="#tab-translation"
+								data-tab-target="#tab-translation"
 								type="button"
 								role="tab"
 								aria-controls="tab-translation"
@@ -422,15 +412,7 @@
 						<a href="mailto:jie.owl2008@gmail.com">jie.owl2008@gmail.com</a>
 						<span class="contact-tag">国际</span>
 					</p>
-					<ul class="contact-social">
-						<li><a href="mailto:owl2008@qq.com" aria-label="QQ 邮箱"><svg class="brand-icon" aria-hidden="true"><use href="#i-qqmail" /></svg></a></li>
-						<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/owlman" aria-label="GitHub"><svg class="brand-icon" aria-hidden="true"><use href="#i-github" /></svg></a></li>
-						<li><a target="_blank" rel="noopener noreferrer" href="https://gitee.com/owlman" aria-label="码云"><svg class="brand-icon" aria-hidden="true"><use href="#i-gitee" /></svg></a></li>
-						<li><a target="_blank" rel="noopener noreferrer" href="https://weibo.com/owlman" aria-label="微博"><svg class="brand-icon" aria-hidden="true"><use href="#i-weibo" /></svg></a></li>
-						<li><a target="_blank" rel="noopener noreferrer" href="https://www.douban.com/people/owlman/" aria-label="豆瓣"><svg class="brand-icon" aria-hidden="true"><use href="#i-douban" /></svg></a></li>
-						<li><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/lingjieowl" aria-label="X (Twitter)"><svg class="brand-icon" aria-hidden="true"><use href="#i-x" /></svg></a></li>
-						<li><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/jie.owlman" aria-label="Facebook"><svg class="brand-icon" aria-hidden="true"><use href="#i-facebook" /></svg></a></li>
-					</ul>
+					<ul class="contact-social" id="contact-social"></ul>
 				</article>
 			</section>
 		</main>
@@ -449,11 +431,10 @@
 					<li><a href="#posts">文章</a></li>
 					<li><a href="#contact">联系</a></li>
 				</ul>
-				<p class="mb-0 small">&copy; 2019-<span id="year">2022</span> owlman.cn　·　本站基于 Bootstrap 5 构建</p>
+				<p class="mb-0 small">&copy; 2019-<span id="year"><script>document.write(new Date().getFullYear())</script></span> owlman.cn　·　本站基于 Bootstrap 5 构建</p>
 			</div>
 		</footer>
 
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="js/main.js" defer></script>
 	</body>
 </html>
