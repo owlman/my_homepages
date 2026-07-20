@@ -106,6 +106,7 @@ python tools/fetch_posts.py            # 抓首页 10 篇，直接写 posts.json
 python tools/fetch_posts.py --dry-run  # 只打印 JSON 到 stdout，不写文件（先看 diff）
 python tools/fetch_posts.py --pages 2  # 抓首页 + 第 2 页（按 date 去重）
 python tools/fetch_posts.py --url <URL>  # 自定义博客首页
+python tools/fetch_posts.py --summary    # 同时抓取每篇文章的正文摘要（较慢但丰富卡片展示）
 ```
 
 或者一次性"抓取 + 校验"：`python tools/play_owlman.py --fetch --skip-live` —— `play_owlman.py` 会先调用 `fetch_posts.py` 再跑 schema 校验。
@@ -215,6 +216,7 @@ IIFE 形式，关键函数：
 - `getPreferredTheme()`：返回 "dark" 为默认（除非 localStorage 有）
 - `applyTheme()`：切换 `data-bs-theme`
 - `loadBooks()` / `loadPosts()`：fetch JSON + 渲染
+- `updateJsonLd(books)`：从 `books.json` 动态覆盖 JSON-LD Book 实体（消除 HTML 硬编码双源）
 - `initReveal()` / `initBackToTop()` / `initReadingProgress()` / `initTabHash()`：交互初始化
 
 ### `books.json` / `posts.json`
@@ -319,6 +321,10 @@ foreach ($id in $ids) {
 | 2026-07 | 引入 `tools/build_jsonld.py` 从 books.json 生成 JSON-LD Books 列表（消除 15 本书的双源 drift），`check.sh` 加校验 |
 | 2026-07 | 字体本地化：Noto Serif SC 子集化到 633 CJK + 52 Latin 字符，woff2 存放 `vendor/fonts/`，告别 Google Fonts CDN |
 | 2026-07 | 修复 HTML skill-tag 与 JSON-LD knowsAbout 字面不一致（`AI / Agent` → `AI 与 Agent`） |
+| 2026-07 | 视觉改善：Hero 渐变分离 / 骨架屏 / 跳过链接 / 统计数字强化 / Tab 过渡 / 字体预加载 / 侧边栏图标 / 完善 reduced-motion |
+| 2026-07 | 工程改善：theme-color 统一 / og:image 尺寸 / 文章按钮去内联样式 / 代表作双列 / JSON-LD 动态注入 / CSS 过渡变量 DRY |
+| 2026-07 | `posts.schema.json` 新增 `summary` 可选字段；`fetch_posts.py` 新增 `--summary` 摘要抓取 |
+| 2026-07 | 新增 `tools/build_feed.py` 从 posts.json 生成 Atom feed（`feed.xml`） |
 
 ## 评估工具
 
@@ -367,9 +373,8 @@ python tools/subset_font.py --dry-run    # 只看字符统计
 
 ## 已知限制
 
-- **Noto Serif SC 走 Google Fonts CDN**，国内访问可能较慢
 - **Noto Serif SC 已本地化**：`tools/subset_font.py` 从 Google Fonts 下载预子集 TTF，覆盖项目中全部 633 个 CJK + 52 个 Latin 字符，转 woff2 存放于 `vendor/fonts/`（400 + 700 两规格）。`style.css` 顶部 `@font-face` 引用本地路径，`index.htm` 不再引入 Google Fonts CDN
 - **字体会随内容增加而漂移**：若新增文章或修改 HTML 引入了新字符，需重跑 `python tools/subset_font.py` 更新字体（`play_owlman.py` 会检查缺失字符但不会自动重建字体）
 - **Bootstrap 227KB 未裁剪**（PurgeCSS Windows 路径兼容问题已放弃，缓存后问题不大）
-- **无 PWA Service Worker**（仅 manifest）
-- **无评论/留言功能**（个人主页不必要）
+- **feed.xml 需手动更新**：`tools/build_feed.py` 从 `posts.json` 生成，添加/更新文章后需重新运行
+- **文章摘要需额外请求**：`fetch_posts.py --summary` 会逐篇请求博客页面提取摘要，10 篇文章约需 10-15 秒

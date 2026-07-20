@@ -5,6 +5,7 @@
   python tools/fetch_posts.py --dry-run       # 只打印 JSON 到 stdout，不写文件
   python tools/fetch_posts.py --pages 2       # 抓首页 + 第 2 页（按发布时间并集去重）
   python tools/fetch_posts.py --url <URL>     # 自定义博客首页
+  python tools/fetch_posts.py --summary       # 抓取每篇文章摘要（需并发请求，较慢）
 
 依赖：requests（pyproject/requirements 视项目情况安装）
 """
@@ -118,6 +119,66 @@ def fetch_all(blog_url: str, pages: int) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# 摘要提取
+# ---------------------------------------------------------------------------
+_SUMMARY_RE = re.compile(
+    r'<div\s+id="cnblogs_post_body"[^>]*>(.*?)</div>',
+    re.S,
+)
+_TAG_RE = re.compile(r"<[^>]+>")
+_WS_RE = re.compile(r"\s+")
+
+
+def extract_summary(post_url: str, max_chars: int = 150) -> str | None:
+    """请求文章页，提取正文首段作为摘要。
+
+    返回 None 表示无法提取（网络错误或结构不匹配，调用方自行跳过）。
+    """
+    try:
+        resp = requests.get(
+            post_url,
+            headers={"User-Agent": USER_AGENT},
+            timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        resp.encoding = "utf-8"
+    except requests.RequestException:
+        return None
+
+    m = _SUMMARY_RE.search(resp.text)
+    if not m:
+        return None
+    text = _TAG_RE.sub("", m.group(1))
+    text = _WS_RE.sub(" ", text).strip()
+    if not text:
+        return None
+    if len(text) <= max_chars:
+        return text
+    # 截断到 max_chars，尽量在句号处断开
+    truncated = text[:max_chars]
+    last_period = max(truncated.rfind("。"), truncated.rfind("，"), truncated.rfind("；"))
+    if last_period > max_chars // 2:
+        return truncated[: last_period + 1]
+    return truncated.rstrip("，。；、") + "……"
+
+
+def attach_summaries(posts: list[dict]) -> None:
+    """为文章列表逐一抓取摘要（原地修改）。跳过已抓取失败的条目。"""
+    import time
+
+    for i, p in enumerate(posts):
+        print(f"  摘要 [{i + 1}/{len(posts)}]: {p['title'][:40]}...", end=" ", flush=True)
+        summary = extract_summary(p["url"])
+        if summary:
+            p["summary"] = summary
+            print("✓")
+        else:
+            print("✗ 跳过")
+        if i < len(posts) - 1:
+            time.sleep(0.5)  # 礼貌间隔
+
+
+# ---------------------------------------------------------------------------
 # 校验
 # ---------------------------------------------------------------------------
 def validate(posts: list[dict]) -> None:
@@ -148,6 +209,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="只打印 JSON 到 stdout，不写文件",
     )
+    parser.add_argument(
+        "--summary",
+        action="store_true",
+        help="逐篇抓取正文摘要（需额外 HTTP 请求，较慢但丰富文章卡片展示）",
+    )
     args = parser.parse_args(argv)
 
     print(f"目标: {args.url}")
@@ -165,6 +231,10 @@ def main(argv: list[str] | None = None) -> int:
     if not posts:
         print("[FAIL] 抓取结果为空", file=sys.stderr)
         return 1
+
+    if args.summary:
+        print(f"开始抓取 {len(posts)} 篇文章摘要...")
+        attach_summaries(posts)
 
     # schema 校验只在要写文件时跑，dry-run 不必
     if not args.dry_run:

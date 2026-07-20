@@ -112,10 +112,42 @@
 				var tb = document.getElementById("count-translation");
 				if (ob) ob.textContent = orig.length;
 				if (tb) tb.textContent = trans.length;
+				updateJsonLd(books);
 			})
 			.catch(function (err) {
 				console.error("加载 books.json 失败:", err);
 			});
+	}
+
+	function updateJsonLd(books) {
+		var script = document.querySelector('script[type="application/ld+json"]');
+		if (!script) return;
+		try {
+			var data = JSON.parse(script.textContent);
+			var graph = data["@graph"];
+			if (!Array.isArray(graph)) return;
+			var nonBook = graph.filter(function (item) {
+				return item["@type"] !== "Book";
+			});
+			var bookEntries = books.map(function (b) {
+				var entry = {
+					"@type": "Book",
+					"name": b.title,
+					"url": b.url,
+					"inLanguage": "zh-CN"
+				};
+				if (b.type === "original") {
+					entry.author = { "@id": "https://www.owlman.cn/#owlman" };
+				} else {
+					entry.translator = { "@id": "https://www.owlman.cn/#owlman" };
+				}
+				return entry;
+			});
+			data["@graph"] = nonBook.concat(bookEntries);
+			script.textContent = JSON.stringify(data);
+		} catch (e) {
+			/* 静默降级——HTML 中的静态 JSON-LD 作为后备 */
+		}
 	}
 
 	function loadPosts() {
@@ -132,6 +164,9 @@
 					.map(function (p) {
 						var t = escapeHtml(p.title);
 						var d = p.date || "";
+						var s = p.summary
+							? '<p class="post-card-summary">' + escapeHtml(p.summary) + "</p>"
+							: "";
 						return (
 							'<div class="col">' +
 							'<a class="post-card" target="_blank" rel="noopener noreferrer" href="' +
@@ -141,6 +176,7 @@
 							t +
 							"</h3>" +
 							(d ? '<span class="post-card-date">' + d + "</span>" : "") +
+							s +
 							'<span class="post-card-more">阅读全文 →</span>' +
 							"</a>" +
 							"</div>"
