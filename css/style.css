@@ -106,6 +106,16 @@ html {
     height: 100%;
 }
 
+.sidebar-quote {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--tw-accent);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--tw-border);
+    line-height: 1.6;
+}
+
 /* ---------- 品牌 SVG 图标 ---------- */
 .brand-icon {
     display: inline-block;
@@ -441,6 +451,21 @@ html {
     position: relative;
     overflow: hidden;
     animation: heroFadeIn 0.8s ease forwards;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.5) 2px,
+        rgba(255, 255, 255, 0.5) 4px
+    );
+    pointer-events: none;
 }
 
 @keyframes heroFadeIn {
@@ -855,6 +880,15 @@ html {
     fill: currentColor;
 }
 
+.contact-signoff {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--tw-accent);
+    text-align: center;
+}
+
 /* ---------- 回到顶部 ---------- */
 .back-to-top {
     position: fixed;
@@ -881,6 +915,12 @@ html {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    animation: btnPulse 0.6s ease 0.3s;
+}
+
+@keyframes btnPulse {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(0) scale(1.12); }
 }
 
 .back-to-top:hover {
