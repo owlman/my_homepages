@@ -228,96 +228,32 @@ html {
 }
 
 /* ---------- 代表作展示 ---------- */
-.featured-book {
-    padding: 1.5rem 0;
+.featured-item .book-cover {
+    max-width: 200px;
 }
 
-.featured-book + .featured-book {
+.featured-item + .featured-item {
+    margin-top: 1.5rem;
+}
+
+.featured-sep {
+    border: 0;
     border-top: 1px solid var(--tw-border);
-}
-
-.featured-cover-link {
-    display: block;
-    position: relative;
-    max-width: 220px;
-    margin: 0 auto;
-}
-
-.featured-cover-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
-    transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.featured-cover-link:hover .featured-cover-img {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+    margin: 1.5rem 0;
 }
 
 .featured-year {
-    position: absolute;
-    right: 4px;
-    bottom: 4px;
+    display: inline-block;
+    vertical-align: middle;
     font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
     background: var(--tw-accent);
     color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: 3px;
+    margin-left: 0.5rem;
     letter-spacing: 0.5px;
-    line-height: 1.4;
-}
-
-.featured-title {
-    font-family: var(--font-serif);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--tw-heading);
-    margin: 0 0 0.1rem;
-}
-
-.featured-subtitle {
-    font-size: 0.95rem;
-    color: var(--tw-muted);
-    margin: 0 0 0.5rem;
-}
-
-.featured-desc {
-    font-size: 0.95rem;
-    color: var(--tw-muted);
-    line-height: 1.75;
-    margin: 0 0 0.6rem;
-    max-width: 60ch;
-}
-
-.featured-shops {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-/* 移动端：封面居中缩小，文字区左对齐 */
-@media (max-width: 767.98px) {
-    .featured-book {
-        padding: 1rem 0;
-    }
-
-    .featured-cover-link {
-        max-width: 160px;
-        margin-bottom: 1rem;
-    }
-
-    .featured-title {
-        font-size: 1.15rem;
-    }
-
-    .featured-desc {
-        font-size: 0.9rem;
-    }
 }
 
 .book-title {
