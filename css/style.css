@@ -227,14 +227,45 @@ html {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* 双列代表作布局 */
-.featured-books .book-cover {
-    max-width: 170px;
+/* ---------- 代表作横向卡片 ---------- */
+.featured-book .book-cover {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.featured-book .book-cover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.featured-divider {
+    border: 0;
+    border-top: 1px solid var(--tw-border);
+    margin: 2rem 0;
+}
+
+.badge-new {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: var(--tw-accent);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 0.5rem;
 }
 
 @media (max-width: 767.98px) {
-    .featured-books .book-cover {
-        max-width: 140px;
+    .featured-book .book-cover {
+        max-width: 160px;
+        margin: 0 auto 1rem;
     }
 }
 
