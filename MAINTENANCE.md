@@ -117,7 +117,7 @@ python tools/fetch_posts.py --url <URL>  # 自定义博客首页
 
 ### 修改购买链接
 
-代表作卡片（`index.htm` 搜索 `JavaScript 全栈开发`）的 `.shop-badge` 区。目前有 `异步社区` + `当当网` 两个链接。
+代表作卡片（`index.htm` 搜索 `JavaScript 全栈开发`）的 `.shop-badge` 区，目前有 `异步社区` + `当当网` + `京东` 三个链接，按 `<!-- 顺序：异步社区 → 当当网 → 京东 -->` 这种"出版社 → 综合电商 → 自营电商"的逻辑排列。每个 badge 都是 `<a class="shop-badge" target="_blank" rel="noopener noreferrer" href="...">text</a>` 形态，**京东链接必须去掉推广追踪参数**（`extension_id` / `jd_pop` / `abt`），只留商品页主体 `https://item.jd.com/<id>.html`，避免把联盟账号标识暴露到公开仓库的 commit 历史里。
 
 ### 修改联系区邮箱
 
