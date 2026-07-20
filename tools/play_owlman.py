@@ -1,9 +1,10 @@
 """owlman.cn 专用评估工具
 
-三步校验：
+四步校验：
   1. JSON Schema 校验 —— books.json / posts.json / social-links.json
   2. 文件存在性校验 —— 封面图片是否全部就位
-  3. Playwright 线上渲染 —— 抓取 owlman.cn 并输出 Markdown 摘要 + 全页截图
+  3. sitemap 一致性 —— 已存在的 sitemap.xml 是否与 books/posts 同步
+  4. Playwright 线上渲染 —— 抓取 owlman.cn 并输出 Markdown 摘要 + 全页截图
 
 用法：
   python tools/play_owlman.py [--output-dir out] [--url https://owlman.cn]
@@ -95,6 +96,31 @@ def check_covers() -> list[str]:
         cover = entry.get("cover", "")
         if not (PROJECT_DIR / cover).exists():
             missing.append(cover)
+    return missing
+
+
+# ===================================================================
+# 阶段 3：sitemap 与 books/posts 一致性校验
+# ===================================================================
+def check_sitemap() -> list[str]:
+    """检查 sitemap.xml 是否包含 books.json + posts.json 的所有 URL"""
+    sitemap_path = PROJECT_DIR / "sitemap.xml"
+    if not sitemap_path.exists():
+        return [f"sitemap.xml 缺失: {sitemap_path}"]
+    try:
+        books = json.loads(DATA_FILES["books"].read_text("utf-8"))
+        posts = json.loads(DATA_FILES["posts"].read_text("utf-8"))
+    except Exception as exc:
+        return [f"无法读取数据文件: {exc}"]
+
+    xml = sitemap_path.read_text("utf-8")
+    missing: list[str] = []
+    for p in posts:
+        if p["url"] not in xml:
+            missing.append(f"博客未在 sitemap: {p['url']}")
+    for b in books:
+        if b["url"] not in xml:
+            missing.append(f"书籍未在 sitemap: {b['url']}")
     return missing
 
 
@@ -205,11 +231,12 @@ def render_live(
 def print_report(
     schema_failures: dict[str, list[str]],
     missing_covers: list[str],
+    sitemap_issues: list[str],
     live: dict | None,
     elapsed_s: float,
 ) -> int:
     """打印结构化报告，返回退出码（0 = 全部通过）"""
-    issues = sum(len(v) for v in schema_failures.values()) + len(missing_covers)
+    issues = sum(len(v) for v in schema_failures.values()) + len(missing_covers) + len(sitemap_issues)
     lines: list[str] = []
     lines.append("=" * 62)
     lines.append("  owlman.cn 评估报告")
@@ -233,8 +260,16 @@ def print_report(
         for c in missing_covers:
             lines.append(f"    FAIL  缺失: {c}")
 
+    # sitemap
+    lines.append("\n[3] sitemap.xml 与数据一致性")
+    if not sitemap_issues:
+        lines.append("    PASS  sitemap 与 books/posts 完全同步")
+    else:
+        for s in sitemap_issues:
+            lines.append(f"    FAIL  {s}")
+
     # 线上渲染
-    lines.append("\n[3] Playwright 线上渲染")
+    lines.append("\n[4] Playwright 线上渲染")
     if live is None:
         lines.append("    SKIP  未执行（Playwright 不可用）")
     else:
@@ -316,6 +351,9 @@ def main(argv: list[str] | None = None) -> int:
     # ---- 封面 ----
     missing_covers = check_covers()
 
+    # ---- sitemap ----
+    sitemap_issues = check_sitemap()
+
     # ---- 线上渲染 ----
     live: dict | None = None
     if not args.skip_live:
@@ -325,7 +363,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[warn] Playwright 失败: {exc}", file=sys.stderr)
 
     elapsed = time.monotonic() - start
-    return print_report(schema_failures, missing_covers, live, elapsed)
+    return print_report(schema_failures, missing_covers, sitemap_issues, live, elapsed)
 
 
 if __name__ == "__main__":

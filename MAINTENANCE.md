@@ -48,10 +48,25 @@ MyHome/
 │   ├── read.png / write.jpg / coding.jpg / movie.jpg
 │   │                       # 兴趣图标（已弃用，未删除可作历史）
 │   └── js_guide.png       # 旧精选封面（已弃用）
-└── vendor/
-    └── bootstrap/
-        ├── css/bootstrap.min.css
-        └── js/bootstrap.bundle.min.js
+├── vendor/
+│   ├── bootstrap/
+│   │   ├── css/bootstrap.min.css
+│   │   └── js/bootstrap.bundle.min.js
+│   └── fonts/
+│       ├── noto-serif-sc-400.woff2   # 子集化（tools/subset_font.py）
+│       └── noto-serif-sc-700.woff2
+├── data/
+│   ├── social-links.json
+│   └── social-links.schema.json
+└── tools/
+    ├── play_owlman.py      # 核心评估工具（4 步校验）
+    ├── fetch_posts.py      # 从博客园抓取文章列表
+    ├── build_sitemap.py    # 从 books/posts 合成 sitemap.xml
+    ├── build_jsonld.py     # 从 books.json 生成 JSON-LD Books 列表
+    ├── subset_font.py      # 下载并子集化字体
+    ├── check.sh            # 预提交校验脚本
+    ├── install-hook.sh     # 安装 Git 钩子
+    └── pre-push            # 预推送钩子模板
 ```
 
 ## 内容维护
@@ -298,14 +313,21 @@ foreach ($id in $ids) {
 | 2026-07 | 统一书籍封面命名（OpenClaw 改为豆瓣 ID `38549104.webp`） |
 | 2026-07 | 引入 `tools/play_owlman.py` 作为项目专用评估工具（Playwright 抓取 + JSON Schema 校验 + 报告输出） |
 | 2026-07 | 引入 `tools/fetch_posts.py` 抓取博客园首页同步 `posts.json`，`play_owlman.py --fetch` 一键串起抓取+校验 |
+| 2026-07 | 代表作新增京东购买链接（异步社区 → 当当网 → 京东） |
+| 2026-07 | 清理 `.gitignore` Eclipse/JDT/CDT 模板残留，仅保留项目相关条目 |
+| 2026-07 | 引入 `tools/build_sitemap.py` 从 books/posts 合成 sitemap.xml（26 URL），`play_owlman.py` 内建一致性校验 |
+| 2026-07 | 引入 `tools/build_jsonld.py` 从 books.json 生成 JSON-LD Books 列表（消除 15 本书的双源 drift），`check.sh` 加校验 |
+| 2026-07 | 字体本地化：Noto Serif SC 子集化到 633 CJK + 52 Latin 字符，woff2 存放 `vendor/fonts/`，告别 Google Fonts CDN |
+| 2026-07 | 修复 HTML skill-tag 与 JSON-LD knowsAbout 字面不一致（`AI / Agent` → `AI 与 Agent`） |
 
 ## 评估工具
 
-`tools/play_owlman.py` 是本项目的专用评估工具，三件事一次完成：
+`tools/play_owlman.py` 是本项目的专用评估工具，四步校验一次完成：
 
 1. **JSON Schema 校验**：`books.json`、`posts.json`、`data/social-links.json` 必须通过各自的 schema。
 2. **文件存在性校验**：`books.json` 中 `cover` 字段指向的图片必须真实存在。
-3. **Playwright 抓取线上版**：访问 `https://owlman.cn`，渲染后输出 Markdown 摘要 + 全页截图，便于发现仅在运行时显现的问题。
+3. **sitemap 一致性**：`sitemap.xml` 必须包含 `books.json` + `posts.json` 的全部 URL。
+4. **Playwright 抓取线上版**：访问 `https://owlman.cn`，渲染后输出 Markdown 摘要 + 全页截图，便于发现仅在运行时显现的问题。
 
 默认输出落在 `D:\Documents\working\notes\owlman_cn_render.md` 与 `owlman_cn_full.png`；可用 `--output-dir` 改写到项目内 `out/`：
 
@@ -328,9 +350,26 @@ python tools/play_owlman.py --output-dir out
 
 依赖 `requests`（环境装一下即可）。一次命令等价于原来手工粘贴标题/URL/日期的流程。
 
+## 字体子集化工具
+
+`tools/subset_font.py` 管理 Noto Serif SC 本地字体。
+
+**原理**：Google Fonts API v1 的 `text=` 参数做服务端子集化，下载预子集 TTF → 本地转 woff2 存 `vendor/fonts/`。
+
+**触发条件**：新增文章或修改 HTML 引入了新 CJK 字符时，需要重跑。
+
+```bash
+python tools/subset_font.py              # 下载 + 子集化
+python tools/subset_font.py --dry-run    # 只看字符统计
+```
+
+字体引用在 `css/style.css` 顶部的 `@font-face`，指向 `vendor/fonts/noto-serif-sc-{400,700}.woff2`。`index.htm` 已移除 Google Fonts CDN 的 `<link>` 和 `preconnect`。
+
 ## 已知限制
 
 - **Noto Serif SC 走 Google Fonts CDN**，国内访问可能较慢
+- **Noto Serif SC 已本地化**：`tools/subset_font.py` 从 Google Fonts 下载预子集 TTF，覆盖项目中全部 633 个 CJK + 52 个 Latin 字符，转 woff2 存放于 `vendor/fonts/`（400 + 700 两规格）。`style.css` 顶部 `@font-face` 引用本地路径，`index.htm` 不再引入 Google Fonts CDN
+- **字体会随内容增加而漂移**：若新增文章或修改 HTML 引入了新字符，需重跑 `python tools/subset_font.py` 更新字体（`play_owlman.py` 会检查缺失字符但不会自动重建字体）
 - **Bootstrap 227KB 未裁剪**（PurgeCSS Windows 路径兼容问题已放弃，缓存后问题不大）
 - **无 PWA Service Worker**（仅 manifest）
 - **无评论/留言功能**（个人主页不必要）

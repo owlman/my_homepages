@@ -86,4 +86,34 @@ PY
   fi
 fi
 
+# ---------- 5. JSON-LD Books 数量与 books.json 一致 ----------
+if [ -f index.htm ] && [ -f books.json ]; then
+  python - <<'PY'
+import json, re, sys
+html = open('index.htm', encoding='utf-8').read()
+m = re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+if not m:
+    sys.exit(0)
+data = json.loads(m.group(1))
+ld_books = [n for n in data['@graph'] if n.get('@type') == 'Book']
+books_json = json.load(open('books.json', encoding='utf-8'))
+if len(ld_books) != len(books_json):
+    print('JSON-LD Books 数量与 books.json 不一致:', file=sys.stderr)
+    print(f'  JSON-LD: {len(ld_books)}, books.json: {len(books_json)}', file=sys.stderr)
+    sys.exit(1)
+ld_urls = {b['url'] for b in ld_books}
+json_urls = {b['url'] for b in books_json}
+if ld_urls != json_urls:
+    print('JSON-LD Books URL 与 books.json 不一致:', file=sys.stderr)
+    print('  JSON-LD 独有:', sorted(ld_urls - json_urls), file=sys.stderr)
+    print('  books.json 独有:', sorted(json_urls - ld_urls), file=sys.stderr)
+    sys.exit(1)
+PY
+  if [ $? -eq 0 ]; then
+    ok "JSON-LD Books 与 books.json 同步"
+  else
+    err "JSON-LD Books 漂移，需重新跑 build_jsonld.py --update"
+  fi
+fi
+
 echo "[PASS] check.sh 全部通过"

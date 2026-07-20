@@ -5,6 +5,23 @@
    冷静、精确、内容优先
    ======================================== */
 
+/* ---------- 本地字体（子集化自 Noto Serif SC）---------- */
+@font-face {
+    font-family: "Noto Serif SC";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../vendor/fonts/noto-serif-sc-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Serif SC";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../vendor/fonts/noto-serif-sc-700.woff2") format("woff2");
+}
+
 /* ---------- 基础色调 ---------- */
 :root {
     --tw-bg: #f5f0eb;
