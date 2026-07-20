@@ -38,6 +38,10 @@ local.properties
 # owlman.cn 评估工具产物
 out/
 
+# Python 缓存
+__pycache__/
+*.pyc
+
 # Chrome DevTools MCP 临时目录
 .playwright-mcp/
 

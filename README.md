@@ -19,6 +19,15 @@ www.owlman.cn 是一个以"外链聚合"为核心的个人主页，汇聚本人�
 - 关键文件说明
 - 常见坑（豆瓣图床防盗链等）
 
+### 同步博客园文章
+
+`posts.json` 由 `tools/fetch_posts.py` 自动从博客园抓取，无需手工维护：
+
+```bash
+python tools/fetch_posts.py            # 抓首页 10 篇，直接写 posts.json
+python tools/play_owlman.py --fetch    # 抓取 + 校验（schema + 封面 + 可选线上渲染）
+```
+
 ## 联系方式
 
 如对项目有兴趣或有任何意见，可通过以下方式联系：

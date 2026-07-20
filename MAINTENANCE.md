@@ -84,7 +84,18 @@ Tab 角标的数字会自动从 JSON 计数。
 
 ### 新增 / 修改博客文章
 
-编辑 `posts.json`：
+**推荐**：`python tools/fetch_posts.py` 一行从博客园 `cnblogs.com/owlman/` 抓取首页 10 篇文章，直接覆盖 `posts.json`。原理见 `tools/fetch_posts.py` 顶部 docstring。
+
+```bash
+python tools/fetch_posts.py            # 抓首页 10 篇，直接写 posts.json
+python tools/fetch_posts.py --dry-run  # 只打印 JSON 到 stdout，不写文件（先看 diff）
+python tools/fetch_posts.py --pages 2  # 抓首页 + 第 2 页（按 date 去重）
+python tools/fetch_posts.py --url <URL>  # 自定义博客首页
+```
+
+或者一次性"抓取 + 校验"：`python tools/play_owlman.py --fetch --skip-live` —— `play_owlman.py` 会先调用 `fetch_posts.py` 再跑 schema 校验。
+
+**手动维护**（仅在脚本失效时退回）：编辑 `posts.json`：
 
 ```json
 {
@@ -286,6 +297,7 @@ foreach ($id in $ids) {
 | 2026-07 | 修复 about 侧栏多余 `</ul>` 闭合 |
 | 2026-07 | 统一书籍封面命名（OpenClaw 改为豆瓣 ID `38549104.webp`） |
 | 2026-07 | 引入 `tools/play_owlman.py` 作为项目专用评估工具（Playwright 抓取 + JSON Schema 校验 + 报告输出） |
+| 2026-07 | 引入 `tools/fetch_posts.py` 抓取博客园首页同步 `posts.json`，`play_owlman.py --fetch` 一键串起抓取+校验 |
 
 ## 评估工具
 
@@ -301,7 +313,20 @@ foreach ($id in $ids) {
 python tools/play_owlman.py --output-dir out
 ```
 
-脚本结束会在 stdout 给出汇总表；任何 schema 校验失败都会以非 0 退出码报错。
+加 `--fetch` 会先调用 `tools/fetch_posts.py` 同步博客园数据再校验；`--skip-live` 只跑本地校验、不开浏览器。脚本结束会在 stdout 给出汇总表；任何 schema 校验失败都会以非 0 退出码报错。
+
+## 博客同步工具
+
+`tools/fetch_posts.py` 是博客园文章列表的同步工具。从 `https://www.cnblogs.com/owlman/` 抓取首页（或前 N 页）文章，按发布时间降序排列，生成符合 `posts.schema.json` 的 JSON，默认直接覆盖 `MyHome/posts.json`。
+
+内部解析策略：
+
+- 标题 + URL：`<a class="postTitle2 ..." href="...">...</a>`，去标签后 trim 空白
+- 日期：`posted @ YYYY-MM-DD HH:MM`（cnblogs footer 行内），只取日期部分
+- 分页：`?page=N`，按 URL 去重合并
+- 写文件前过一遍 `jsonschema.validate()`，失败不写
+
+依赖 `requests`（环境装一下即可）。一次命令等价于原来手工粘贴标题/URL/日期的流程。
 
 ## 已知限制
 

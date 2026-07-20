@@ -7,6 +7,8 @@
 
 用法：
   python tools/play_owlman.py [--output-dir out] [--url https://owlman.cn]
+  python tools/play_owlman.py --fetch            # 先用 fetch_posts.py 同步博客园，再校验
+  python tools/play_owlman.py --skip-live        # 仅做本地校验（不开浏览器）
 """
 
 from __future__ import annotations
@@ -14,6 +16,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -273,6 +276,17 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="跳过 Playwright 线上渲染（仅做本地校验）",
     )
+    parser.add_argument(
+        "--fetch",
+        action="store_true",
+        help="先调用 tools/fetch_posts.py 同步博客园文章列表，再做后续校验",
+    )
+    parser.add_argument(
+        "--fetch-pages",
+        type=int,
+        default=1,
+        help="配合 --fetch：抓取前 N 页（默认 1，转交 fetch_posts.py）",
+    )
     args = parser.parse_args(argv)
 
     import time
@@ -280,6 +294,21 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f"项目根: {PROJECT_DIR}")
     print(f"输出目录: {args.output_dir}")
+
+    # ---- 抓取博客园（如指定） ----
+    if args.fetch:
+        fetch_cmd = [
+            sys.executable,
+            str(TOOLS_DIR / "fetch_posts.py"),
+            "--pages",
+            str(args.fetch_pages),
+        ]
+        print(f"[fetch] 运行: {' '.join(fetch_cmd)}")
+        try:
+            subprocess.run(fetch_cmd, check=True, cwd=str(PROJECT_DIR))
+        except subprocess.CalledProcessError as exc:
+            print(f"[FAIL] fetch_posts.py 退出码 {exc.returncode}", file=sys.stderr)
+            return exc.returncode or 1
 
     # ---- Schema ----
     schema_failures = validate_schemas()
