@@ -436,6 +436,26 @@ html {
         font-size: 1.05rem;
         line-height: 1.85;
     }
+
+    /* 移动端侧边栏压缩 */
+    .sidebar-card {
+        padding: 1rem !important;
+    }
+
+    .sidebar-card .sub-heading:last-of-type,
+    .sidebar-card .side-nav:last-of-type {
+        display: none;
+    }
+
+    .info-list li {
+        display: inline;
+        margin-right: 0.8rem;
+    }
+
+    .info-list .info-label {
+        min-width: auto;
+        margin-right: 0.2rem;
+    }
 }
 
 /* ==========================================================
