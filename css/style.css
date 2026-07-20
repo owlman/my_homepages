@@ -227,45 +227,89 @@ html {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* ---------- 代表作横向卡片 ---------- */
-.featured-book .book-cover {
-    max-width: 200px;
+/* ---------- 代表作卡片 ---------- */
+.featured-card {
+    background: var(--tw-surface);
+    border: 1px solid var(--tw-border);
+    border-radius: 6px;
+    padding: 1.8rem 1.5rem 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.featured-card:hover {
+    border-color: var(--tw-accent);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.featured-cover-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.featured-cover {
+    display: block;
+    max-width: 180px;
     width: 100%;
     height: auto;
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.13);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.featured-book .book-cover:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.featured-card:hover .featured-cover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
-.featured-divider {
-    border: 0;
-    border-top: 1px solid var(--tw-border);
-    margin: 2rem 0;
-}
-
-.badge-new {
-    display: inline-block;
-    vertical-align: middle;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+.featured-badge {
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+    font-family: var(--font-mono);
     background: var(--tw-accent);
     color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
     padding: 2px 8px;
     border-radius: 3px;
-    margin-left: 0.5rem;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+}
+
+.featured-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--tw-heading);
+    margin-bottom: 0.15rem;
+}
+
+.featured-subtitle {
+    font-size: 0.95rem;
+    color: var(--tw-muted);
+    margin-bottom: 0.6rem;
+}
+
+.featured-desc {
+    font-size: 0.9rem;
+    color: var(--tw-muted);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+    flex: 1;
 }
 
 @media (max-width: 767.98px) {
-    .featured-book .book-cover {
-        max-width: 160px;
-        margin: 0 auto 1rem;
+    .featured-card {
+        padding: 1.2rem 1rem 1rem;
+    }
+    .featured-cover {
+        max-width: 150px;
     }
 }
 
