@@ -6,6 +6,11 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://www.cnblogs.com/owlman/p/21727495</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://www.cnblogs.com/owlman/p/21647666</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
