@@ -58,6 +58,10 @@
     --tw-heading: #e6ddd0;
 }
 
+[data-bs-theme="dark"] .post-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
 body {
     background-color: var(--tw-bg);
     color: var(--tw-text);
@@ -389,9 +393,9 @@ html {
 
 .content-card p {
     max-width: 70ch;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     font-size: 1.125rem;
-    line-height: 1.9;
+    line-height: 1.75;
 }
 
 .content-card .book-desc p {
@@ -414,6 +418,8 @@ html {
     color: var(--tw-heading);
     margin-bottom: 1.2rem;
     letter-spacing: 0.5px;
+    border-left: 3px solid var(--tw-accent);
+    padding-left: 0.8rem;
 }
 
 /* ---------- 响应式微调 ---------- */
@@ -464,7 +470,7 @@ html {
 
 /* ---------- Hero 首屏 ---------- */
 .hero {
-    background: linear-gradient(180deg, #111318 0%, var(--tw-nav-bg) 40%);
+    background: linear-gradient(180deg, #111318 0%, var(--tw-nav-bg) 100%);
     color: #fff;
     padding: 3.5rem 0 2.5rem;
     text-align: center;
@@ -494,8 +500,8 @@ html {
 }
 
 .hero-avatar {
-    width: 120px;
-    height: 120px;
+    width: clamp(80px, 12vw, 120px);
+    height: clamp(80px, 12vw, 120px);
     border-radius: 50%;
     object-fit: cover;
     padding: 5px;
@@ -510,7 +516,7 @@ html {
     font-family: var(--font-serif);
     font-weight: 700;
     font-size: clamp(2rem, 5vw, 2.8rem);
-    letter-spacing: 2px;
+    letter-spacing: clamp(1px, 0.3vw, 2px);
     margin: 1rem 0 0.25rem;
     position: relative;
     z-index: 1;
@@ -676,7 +682,7 @@ html {
 
 /* ---------- 区块通用 ---------- */
 .section {
-    padding: 2.5rem 0 0.5rem;
+    padding: 2.5rem 0 2rem;
     scroll-margin-top: 70px;
 }
 
