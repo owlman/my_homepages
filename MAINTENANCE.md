@@ -269,6 +269,7 @@ Gmail 不在图标列表（已用文字邮箱地址 + 标签在联系区独立�
 7. **本地测试 CSS 修改**：浏览器可能缓存旧 CSS，刷新时**加查询参数**（如 `index.htm?v=2`）强制重新加载，避免看到陈旧版本误导。
 8. **联系区分隔线**：用 `border-top` 不用 `::before + position: absolute`（后者在 `inline-flex` 父元素中会出现 60% 宽度居中偏移问题）。
 9. **社交图标顺序**：Hero 和联系区两处必须保持完全一致。
+10. **`tools/check.sh` 静默跳过 schema 校验**：未安装 `jsonschema` 时，`books.json` / `posts.json` / `data/social-links.json` 三项 schema 校验会被 `[SKIP]` 跳过，不报错但也不校验。新工作区先 `pip install -r requirements-dev.txt` 再跑 `check.sh` 才能完整生效。
 
 ## 数据获取小贴士
 
