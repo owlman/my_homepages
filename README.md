@@ -28,10 +28,26 @@ python tools/fetch_posts.py            # 抓首页 10 篇，直接写 posts.json
 python tools/play_owlman.py --fetch    # 抓取 + 校验（schema + 封面 + 可选线上渲染）
 ```
 
+### 新增一本书
+
+新书条目要同步 3 处（以最近新增的《OpenClaw 快速上手》subject `38549104` 为例）：
+
+1. **`books.json`**：追加 `{ "title": ..., "url": "https://book.douban.com/subject/38549104/", "type": "original", "cover": "img/books/38549104.webp", "w": 400, "h": 580, "year": 2026 }` 等字段
+2. **`img/books/38549104.webp`**：与 `books.json` 中 `cover` 字段路径一致；文件名采用豆瓣 subject ID
+3. **`index.htm`** JSON-LD：在 `@graph` 数组（约第 94 行起）追加对应 `{@type: "Book"}` 条目
+
+### 启用 pre-push 校验
+
+clone 出新工作区后手动安装钩子，让 push 前自动跑 schema / 链接校验：
+
+```bash
+bash tools/install-hook.sh
+```
+
 ## 联系方式
 
 如对项目有兴趣或有任何意见，可通过以下方式联系：
-- E-mail: jie.owl2008@gmail.com
+- E-mail: `jie.owl2008[at]gmail[dot]com`
 - 微博: [凌杰](https://weibo.com/owlman)
 - X: [@lingjieowl](https://twitter.com/lingjieowl)
 
