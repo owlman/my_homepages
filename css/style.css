@@ -418,8 +418,6 @@ html {
     color: var(--tw-heading);
     margin-bottom: 1.2rem;
     letter-spacing: 0.5px;
-    border-left: 3px solid var(--tw-accent);
-    padding-left: 0.8rem;
 }
 
 /* ---------- 响应式微调 ---------- */
