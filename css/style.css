@@ -766,10 +766,11 @@ html {
     padding: 1.2rem 1.3rem;
     background: var(--tw-surface);
     border: 1px solid var(--tw-border);
+    border-left: 3px solid var(--tw-accent);
     border-radius: 4px;
     text-decoration: none;
     color: var(--tw-text);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, border-left-color 0.2s;
 }
 
 .post-card:hover {
